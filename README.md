@@ -2,6 +2,8 @@
 
 Epidemico React components for data visualization.
 
+See a [demo of all components](https://epi-ui.surge.sh) or see them in production at [epidemico.com](https://www.epidemico.com).
+
 ## Getting Started
 
     npm install
