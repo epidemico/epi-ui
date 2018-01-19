@@ -6,8 +6,6 @@ Epidemico React components for data visualization.
 
     npm start
 
-## Building and publishing
+## Publishing to npm
 
-    npm version minor
-    npm run build
     npm run publish

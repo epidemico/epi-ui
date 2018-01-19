@@ -17,7 +17,7 @@
     "test": "nwb test-react",
     "test:coverage": "nwb test-react --coverage",
     "test:watch": "nwb test-react --server",
-    "publish": "npm publish --access=public"
+    "publish": "npm version minor && npm run build && npm publish --access=public"
   },
   "dependencies": {
     "d3": "^3.5.17",
