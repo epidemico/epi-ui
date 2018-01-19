@@ -47,6 +47,23 @@ export const Histogram = {
   bins: 5,
 }
 
+export const HorizontalBarchart = {
+  data: [
+    {
+      name: 'twitter',
+      value: 10000,
+    },
+    {
+      name: 'facebook',
+      value: 5000,
+    },
+    {
+      name: 'tumblr',
+      value: 1000,
+    },
+  ],
+}
+
 /*
 export const Topics = {
   onChange: (error: Error, results: any) => log(results),
@@ -588,23 +605,6 @@ export const LineBarChartCombo = {
     volume: true,
     sentiment: false,
   },
-}
-
-export const HorizontalBarchart = {
-  data: [
-    {
-      name: 'twitter',
-      value: 10000,
-    },
-    {
-      name: 'facebook',
-      value: 5000,
-    },
-    {
-      name: 'tumblr',
-      value: 1000,
-    },
-  ],
 }
 
 export const DictionaryMap = {
