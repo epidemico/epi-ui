@@ -1,7 +1,7 @@
 {
   "name": "@epidemico/epi-ui",
   "version": "1.8.0",
-  "description": "Epidemico UI Components for Data Visualization",
+  "description": "React components for data visualization",
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": [
