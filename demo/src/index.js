@@ -5,10 +5,15 @@ import style from './style.css'
 import EpiUI, { demodata } from '../../src'
 
 const hasDemoData = Object.keys(demodata).sort()
+const title = 'Epi-UI Browser'
+
+if (document) {
+  document.title = title
+}
 
 const EpiUIBrowser = () => (
   <div className="demo">
-    <h2>Epi-UI Browser</h2>
+    <h2>{title}</h2>
     <ul className="tag-group-list" style={{ listStyleType: 'none', margin: 0, padding: 0 }}>
       {hasDemoData.map(key => (
         <li className="tag" key={key}>
