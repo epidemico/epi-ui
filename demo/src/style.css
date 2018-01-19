@@ -1,0 +1,14 @@
+.demo {
+  color: #555;
+  font-family: "OpenSans", Helvetica, sans-serif;
+  font-weight: 200;
+  line-height: 1.3;
+}
+
+.demo .col {
+  display: inline-block;
+}
+
+.demo .col-50p {
+  width: 50%;
+}
