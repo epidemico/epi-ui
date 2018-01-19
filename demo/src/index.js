@@ -31,18 +31,16 @@ const EpiUIBrowser = () => (
         data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"
       />
     </a>
-    <ul className="tag-group-list" style={{ listStyleType: 'none', margin: 0, padding: 0 }}>
-      {hasDemoData.map(key => (
-        <li className="tag" key={key}>
-          <a href={`#${key}`}>{key}</a>
-        </li>
-      ))}
-      <li className="tag" key="svgicons">
-        <a href="#svgicons">
-          <span className="tag-label">SVG Icons</span>
-        </a>
-      </li>
-    </ul>
+    {hasDemoData.map(key => (
+      <button type="button" key={key}>
+        <a href={`#${key}`}>{key}</a>
+      </button>
+    ))}
+    <button className="tag">
+      <a href="#svgicons">
+        <span className="tag-label">SVG Icons</span>
+      </a>
+    </button>
     <br /> <hr /> <br />
     {hasDemoData.map(key => {
       // Render each epi-ui component and display info on each.
@@ -82,16 +80,19 @@ const EpiUIBrowser = () => (
       <div className="row">
         <div className="col col-50p">
           <h4>SVG Icons</h4>
-          <ul className="list-unstyled list--grid">
-            {Object.keys(EpiUI.icons).map(key => (
-              <li key={key}>
-                <div className="btn btn--disabled btn-round">
-                  <EpiUI.SvgIcon icon={key} size={0.9} label={key} hideLabel />
-                </div>
-                <label>{key}</label>
-              </li>
-            ))}
-          </ul>
+          <p>
+            <code>
+              &lt;SvgIcon icon=&#123;<i>NAME</i>&#125; size=&#123;1&#125; label="Label" /&gt;
+            </code>
+          </p>
+          {Object.keys(EpiUI.icons).map(key => (
+            <button key={key}>
+              <div className="btn btn--disabled btn-round">
+                <EpiUI.SvgIcon icon={key} size={0.9} label={key} hideLabel />
+              </div>
+              <label>{key}</label>
+            </button>
+          ))}
         </div>
         <div className="col col-50p">
           <h2 className="panel-title">Prop Types</h2>
