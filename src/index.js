@@ -9,7 +9,7 @@ import HorizontalBarChart from './HorizontalBarChart'
 import SvgIcon from './SvgIcon'
 
 // Export individual components.
-export { demodata, BarChart, Histogram }
+export { demodata, icons, BarChart, Histogram, HorizontalBarChart, SvgIcon }
 
 // Export a default object with all components.
 export default {
