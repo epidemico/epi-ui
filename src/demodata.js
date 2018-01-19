@@ -47,7 +47,7 @@ export const Histogram = {
   bins: 5,
 }
 
-export const HorizontalBarchart = {
+export const HorizontalBarChart = {
   data: [
     {
       name: 'twitter',

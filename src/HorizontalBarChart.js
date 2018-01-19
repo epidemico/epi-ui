@@ -10,7 +10,7 @@ type PropTypes = {
   onBarClick: Function,
 }
 
-export default class HorizontalBarchart extends PureComponent<PropTypes> {
+export default class HorizontalBarChart extends PureComponent<PropTypes> {
   static defaultProps = {
     data: [],
     margin: { top: 20, right: 20, bottom: 30, left: 100 },
