@@ -1,9 +1,8 @@
 import * as demodata from './demodata'
 
-import ReactLoadingButton from '@epidemico/react-loading-button'
+import { BarChart, Histogram } from '@epidemico/epi-ui'
 
 import * as AutoSuggestBoxes from './AutoSuggestBox'
-import BarChart from './BarChart'
 import ContextOnHighlight from './ContextOnHighlight'
 import DataCoverage from './DataCoverage'
 import DateRangePicker from './DateRangePicker'
@@ -13,7 +12,6 @@ import ExplodeChart from './ExplodeChart'
 import GeoCoder from './GeoCoder'
 import GroupedBarchart from './GroupedBarchart'
 import GroupingTree from './GroupingTree'
-import Histogram from './Histogram'
 import HorizontalBarchart from './HorizontalBarchart'
 import LineBarChartCombo from './LineBarChartCombo'
 import Map from './Map'
@@ -54,7 +52,6 @@ export {
   Modal,
   NegativePositive,
   RatioBar,
-  ReactLoadingButton,
   ScatterPlot,
   Sentiment,
   SideBar,
@@ -88,7 +85,6 @@ export default {
   Modal,
   NegativePositive,
   RatioBar,
-  ReactLoadingButton,
   ScatterPlot,
   Sentiment,
   SideBar,

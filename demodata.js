@@ -10,11 +10,6 @@ export const Topics = {
 
 export const GeoCoder = {}
 
-export const ReactLoadingButton = {
-  children: 'A static button in the "loading" state',
-  loading: true,
-}
-
 /*
 export const Modal = {
   title: 'Title',
