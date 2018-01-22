@@ -24,6 +24,7 @@
 
 .demo .col-50p {
   width: 50%;
+  vertical-align: top;
 }
 
 .demo .github {
