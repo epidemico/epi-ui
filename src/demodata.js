@@ -65,7 +65,7 @@ export const HorizontalBarChart = {
 }
 
 export const Spinner = {
-  size: 'md',
+  size: 'lg',
 }
 
 /*
