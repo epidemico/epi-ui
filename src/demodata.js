@@ -64,6 +64,10 @@ export const HorizontalBarChart = {
   ],
 }
 
+export const Spinner = {
+  size: 'md',
+}
+
 /*
 export const Topics = {
   onChange: (error: Error, results: any) => log(results),
@@ -745,9 +749,6 @@ export const GroupedBarchart = {
   label: 'Sentiment',
 }
 
-export const Spinner = {
-  size: 'md',
-}
 
 export const WordCloud = {
   data: [
