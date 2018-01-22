@@ -3,6 +3,7 @@ import { render } from 'react-dom'
 
 import style from './style.css'
 import EpiUI, { demodata } from '../../src'
+import { version } from '../../package.json'
 
 const hasDemoData = Object.keys(demodata).sort()
 const title = 'Epi-UI Browser'
@@ -13,7 +14,7 @@ if (document) {
 
 const EpiUIBrowser = () => (
   <div className="demo">
-    <h2>{title}</h2>
+    <h1>{title}</h1>
     <p>
       React components for data visualization. Available on{' '}
       <a href="https://github.com/epidemico/epi-ui" target="_blank" rel="noopener">
@@ -23,25 +24,19 @@ const EpiUIBrowser = () => (
         Epidemico
       </a>.
     </p>
-    <a href="https://github.com/epidemico/epi-ui" target="_blank" rel="noopener">
-      <img
-        className="github"
-        src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67"
-        alt="Fork me on GitHub"
-        data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"
-      />
-    </a>
-    {hasDemoData.map(key => (
-      <button type="button" key={key}>
-        <a href={`#${key}`}>{key}</a>
+    <p>
+      {hasDemoData.map(key => (
+        <button type="button" key={key}>
+          <a href={`#${key}`}>{key}</a>
+        </button>
+      ))}
+      <button className="tag">
+        <a href="#svgicons">
+          <span className="tag-label">SVG Icons</span>
+        </a>
       </button>
-    ))}
-    <button className="tag">
-      <a href="#svgicons">
-        <span className="tag-label">SVG Icons</span>
-      </a>
-    </button>
-    <br /> <hr /> <br />
+    </p>
+    <hr /> <br />
     {hasDemoData.map(key => {
       // Render each epi-ui component and display info on each.
       const component = EpiUI[key]
@@ -125,6 +120,15 @@ const EpiUIBrowser = () => (
         </div>
       </div>
     </div>
+    <a href="https://github.com/epidemico/epi-ui" target="_blank" rel="noopener">
+      <img
+        className="github"
+        src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67"
+        alt="Fork me on GitHub"
+        data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"
+      />
+    </a>
+    <small className="version">{version}</small>
   </div>
 )
 
