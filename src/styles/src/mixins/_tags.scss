@@ -1,0 +1,41 @@
+@mixin tag-color($text-color, $bg-color, $border-color) {
+  color: $text-color;
+  background-color: $bg-color;
+  border: 1px solid $border-color;
+  border-left: 0;
+  &:first-child {
+    border-left: 1px solid $border-color;
+  }
+  a, a:visited, a:focus, a:hover, a:active {
+    color: $text-color;
+    text-decoration: none;
+  }
+  &:hover {
+    background-color: darken($bg-color, .15);
+  }
+}
+
+// static tag styles
+%tag {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: .1rem .3rem .1rem 0;
+  min-height: $tag-min-height;
+  font-size: .7rem;
+  font-weight: 400;
+  line-height: 1rem;
+  border-radius: .2rem;
+  overflow: hidden; // to clip corners of children for border-radius
+}
+
+%tag-colors {
+  &.is-positive { @include tag-color(#fff, $positive, $positive); }
+  &.is-warning { @include tag-color(#fff, $warning-dk, $warning-dk); }
+  &.is-negative { @include tag-color(#fff, $negative, $negative); }
+  &.is-neutral { @include tag-color(#fff, $tertiary-color, $tertiary-color); }
+  &.is-neutral-alt { @include tag-color(#fff, $primary-color-lighter, $primary-color-lighter); }
+  &.is-white { @include tag-color($gray-darker, #fff, $gray-light); }
+  &.is-gray { @include tag-color($gray-darker, $gray-lighter, $gray-light); }
+  &.is-highlight { @include tag-color($gray-darker, $table-cell-isselected-color, $table-cell-isselected-border); }
+}

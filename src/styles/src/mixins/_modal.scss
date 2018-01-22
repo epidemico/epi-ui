@@ -1,0 +1,39 @@
+
+
+%modal-displayType--common {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 30rem;
+  transform: translate(-50%, -50%);
+  border-radius: .3rem;
+}
+
+%modal-displayType--flexHeight {
+  @extend %modal-displayType--common;
+  max-height: calc(100vh - 6rem);
+}
+
+%modal-displayType--fixedHeight {
+  @extend %modal-displayType--common;
+  height: 30rem;
+}
+
+%modal-displayType--fullScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  bottom: 0;
+}
+
+%modal-displayType--inlinePosition { // top and left values defined inline
+ position: absolute;
+ width: 30rem;
+ max-height: calc(100vh - 6rem);
+ border-radius: .3rem;
+}
+
+@mixin modal($displayType: fixedHeight) {
+  @extend %modal-displayType--#{$displayType};
+}

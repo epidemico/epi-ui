@@ -1,0 +1,121 @@
+//
+// Button styles
+// adapted from Bootstrap
+//
+
+%btn {
+  position: relative;
+  display: inline-block;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  &:focus,
+  &.focus {
+    text-decoration: none;
+  }
+  &:active,
+  &.is-active {
+    font-weight: 600;
+    background-image: none;
+    outline: 0;
+  }
+  &:disabled {
+    cursor: auto;
+    opacity: .65;
+  }
+}
+
+@mixin btn() {
+  @extend %btn;
+  @include button-size($btn-padding-y, $btn-padding-x, $font-size-sm, $line-height, $btn-border-radius);
+  @include transition();
+  border: $btn-border-width solid transparent;
+}
+
+@mixin btn-round($size) {
+  width: $size;
+  height: $size;
+  padding: 0;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Button variants
+// Easily pump out default styles, as well as :hover, :focus, :active,
+// and disabled options for all buttons
+@mixin button-variant($text-default, $background-default, $border-default, $text-hover, $background-hover, $border-hover, $text-active, $background-active, $border-active) {
+  color: $text-default;
+  background-color: $background-default;
+  border-color: $border-default;
+  svg, path {
+    fill: $text-default;
+  }
+  &:hover,
+  &:focus,
+  &.focus {
+    color: $text-hover;
+    background-color: $background-hover;
+    border-color: $border-hover;
+    svg, path {
+      fill: $text-hover;
+    }
+  }
+  &:focus {
+    @include box-shadow($box-shadow);
+
+  }
+  &.is-active {
+    color: $text-active;
+    background-color: $background-active;
+    border-color: $border-active;
+    border-width: $btn-border-width-active;
+    svg, path {
+      fill: $text-active;
+    }
+    &:hover,
+    &:focus {
+      color: $text-hover;
+      background-color: $background-hover;
+      border-color: $border-hover;
+      path {
+        fill: $text-hover;
+      }
+    }
+  }
+  &.btn--disabled,
+  &.disabled,
+  &:disabled {
+    cursor: default;
+    color: $text-default;
+    background-color: $background-default;
+    border-color: $border-default;
+    svg, path {
+      fill: $text-default;
+    }
+    &:focus,
+    &.focus {
+      background-color: $background-default;
+      border-color: $border-default;
+    }
+  }
+}
+
+@mixin button-size($padding-y, $padding-x, $font-size, $line-height, $border-radius) {
+  padding: $padding-y $padding-x;
+  font-size: $font-size;
+  line-height: $line-height;
+  border-radius: $border-radius;
+}
+
+@mixin button-list() {
+  @include list-unstyled();
+  margin: 1rem 0;
+  &.button-list-inline {
+    display: inline-block;
+    margin: 0 1em;
+  }
+}

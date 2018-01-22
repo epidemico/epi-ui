@@ -1,0 +1,121 @@
+%tab-bar { // static tab bar styles
+  display: flex;
+  align-items: flex-end;
+  font-size: inherit;
+  &.nav-align-center {
+    justify-content: center;
+  }
+  &.has-heading {
+    align-items: center;
+    .tab-bar-heading {
+      text-transform: capitalize;
+      margin: 0 2.5rem 0 0;
+      color: #fff;
+      font-size: 1.2rem;
+    }
+  }
+}
+
+%tabs { // static tab styles
+  @extend %list-unstyled;
+  position: relative;
+  display: flex;
+  font-size: inherit;
+  li {
+    display: flex;
+    margin-right: .5rem;
+    padding: .6rem .8rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    @include transition();
+  }
+}
+
+@mixin tabs--default($tab-active-text-color, $tab-active-bg-color, $tab-text-color, $tab-bg-color, $tab-border-color, $tab-radius: .3rem) {
+  border-bottom: 1px solid $tab-border-color;
+  z-index: 1;
+  li {
+    color: $tab-text-color;
+    background-color: $tab-bg-color;
+    border: 1px solid $tab-border-color;
+    border-bottom: 0;
+    border-top-left-radius: $tab-radius;
+    border-top-right-radius: $tab-radius;
+    a, a:visited, a:hover, a:focus, a:active {
+      color: $tab-text-color;
+    }
+    &:hover {
+      color: $tab-text-color;
+      background-color: darken($tab-bg-color,3%);
+      border-color: darken($tab-border-color,3%);
+      a, a:visited, a:hover, a:focus, a:active {
+        color: $tab-text-color;
+      }
+    }
+    &.is-active {
+      margin-bottom: -1px;
+      color: $tab-active-text-color;
+      background-color: $tab-active-bg-color;
+      border-color: $tab-border-color;
+      a, a:visited, a:hover, a:focus, a:active {
+        color: $tab-active-text-color;
+      }
+    }
+  }
+}
+
+%tabs-underline {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  bottom: 0;
+  left: 0;
+}
+
+@mixin tabs--underline($tab-text-color, $tab-underline-color-hover, $tab-underline-color-active) {
+  width: 100%;
+  padding: 0 1rem;
+  border-bottom: 1px solid $gray-light;
+  li {
+    align-items: baseline;
+    position: relative;
+    margin: 0 2.5rem 0 0;
+    padding: 0 .1rem .5rem .1rem;
+    text-align: left;
+    color: $tab-text-color;
+    &:last-child {
+      margin-right: 0;
+    }
+    &:before {
+      @extend %tabs-underline;
+      background-color: $tab-underline-color-hover;
+      visibility: hidden;
+      @include transform(scaleX(0));
+      @include transition();
+    }
+    &:hover:before {
+      visibility: visible;
+      @include transform(scaleX(1));
+    }
+    &.is-active:before, &.selected:before {
+      @extend %tabs-underline;
+      background-color: $tab-underline-color-active;
+      visibility: visible;
+      @include transform(scaleX(1));
+    }
+    a, a:link, a:visited, a:hover, a:focus, a:active {
+      color: $tab-text-color;
+      text-decoration: none;
+    }
+  }
+}
+
+@mixin tabs--button($button-variant: '.btn-white-to-secondary') {
+  li {
+    @include btn();
+    @extend #{$button-variant};
+    @extend .btn-xs;
+  }
+
+}

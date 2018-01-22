@@ -1,0 +1,81 @@
+// wraps around the form element for consistent styling purposes
+
+%form-field {
+  position: relative;
+  margin: 0 0 .5rem 0;
+  padding: .3rem;
+  background-color: #fff;
+  border: 1px solid $gray-light;
+  overflow: visible;
+  &.form-field--condensed {
+    padding: 0;
+  }
+}
+
+@mixin form-field() {
+  @extend %form-field;
+}
+
+@mixin form-field-focus() {
+  outline: none;
+  border-color: $primary-color-brighter;
+  @include box-shadow($box-shadow-input-focus);
+}
+
+// the actual form element
+
+%form-control {
+  display: block;
+  margin: 0;
+  padding: $input-padding-y $input-padding-x;
+  font-size: .9rem;
+  font-weight: 400;
+  line-height: 1.3;
+  border-radius: .1rem;
+  border: 1px solid $gray-light;
+  //border: 0;
+  &::-ms-expand {
+    background-color: transparent;
+    border: 0;
+  }
+  &::placeholder {
+    color: $input-color-placeholder;
+    // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526.
+    opacity: 1;
+  }
+  &:focus {
+    @include form-field-focus();
+    //background-color: $gray-lightest;
+  }
+  &:disabled,
+  &[readonly] {
+    background-color: $input-bg-disabled;
+    opacity: 1;
+  }
+  &:disabled {
+    cursor: $cursor-disabled;
+  }
+}
+
+@mixin range-thumb() {
+  width: .9rem;
+  height: .9rem;
+  background: #fff;
+  border: .15rem solid #abe2fb;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+@mixin range-track() {
+  width: 100%;
+  height: .2rem;
+  background: #abe2fb;
+  border-radius: .5rem;
+  cursor: pointer;
+}
+
+// width can be set if don't want to span full parent width
+@mixin form-control($width: 100%) {
+  @extend %form-control;
+  width: $width;
+}

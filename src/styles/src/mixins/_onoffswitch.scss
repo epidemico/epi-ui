@@ -1,0 +1,70 @@
+%onoffswitch-inner-pseudo-common {
+  display: flex;
+  align-items: center;
+  line-height: 1.3;
+  color: white;
+  font-family: $font-family-base;
+  text-transform: uppercase;
+}
+
+%onoffswitch {
+  position: relative;
+  padding: 0;
+  border: 0;
+  border-radius: 2rem;
+  overflow: hidden;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select: none;
+  &:focus {
+    outline: 0;
+  }
+  .onoffswitch-inner {
+    display: flex;
+    @include transition();
+    &:before {
+      @extend %onoffswitch-inner-pseudo-common;
+      content: attr(data-text-before);
+      justify-content: flex-start;
+      background-color: $secondary-color;
+      color: #fff;
+    }
+    &:after {
+      @extend %onoffswitch-inner-pseudo-common;
+      content: attr(data-text-after);
+      justify-content: flex-end;
+      background-color: $gray-lighter;
+      color: $gray-dark;
+    }
+  }
+}
+
+@mixin onoffswitch($size) {
+  width: getSetting($onoffswitch-settings, $size, width);
+  .onoffswitch-inner {
+    width: getSetting($onoffswitch-settings, $size, width) * 2;
+    height: getSetting($onoffswitch-settings, $size, toggle-size) + (getSetting($onoffswitch-settings, $size, toggle-v-margin) * 2);
+    margin-left: - getSetting($onoffswitch-settings, $size, width);
+    &:before, &:after {
+      width: getSetting($onoffswitch-settings, $size, width);
+      font-size: getSetting($onoffswitch-settings, $size, font-size);
+    }
+    &:before {
+      padding-left: getSetting($onoffswitch-settings, $size, pseudo-padding);
+    }
+    &:after {
+      padding-right: getSetting($onoffswitch-settings, $size, pseudo-padding);
+    }
+  }
+  .onoffswitch-switch {
+    right: (getSetting($onoffswitch-settings, $size, width) - (getSetting($onoffswitch-settings, $size, toggle-size) + getSetting($onoffswitch-settings, $size, toggle-h-margin)));
+    width: getSetting($onoffswitch-settings, $size, toggle-size);
+    height: getSetting($onoffswitch-settings, $size, toggle-size);
+  }
+  &.is-active,
+  .onoffswitch-checkbox:checked + .onoffswitch-label {
+    .onoffswitch-switch {
+      right: getSetting($onoffswitch-settings, $size, toggle-h-margin);
+    }
+  }
+}

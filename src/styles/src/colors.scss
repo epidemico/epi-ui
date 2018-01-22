@@ -1,0 +1,86 @@
+// colors
+$gray-lightest:               #f6f6f6;
+$gray-lighter:                #ececec;
+$gray-light:                  #dedede;
+$gray:                        #ccc;
+$gray-mid:                    #ababab;
+$gray-dark:                   #898989;
+$gray-darker:                 #666;
+$gray-darkest:                #333;
+
+$primary-color-lightest:      #6394cc;
+$primary-color-lighter:       #3e79bb;
+$primary-color:               #1E63B0; // BAH Blue
+$primary-color-darker:        #0b4b93;
+$primary-color-darkest:       #073a73;
+
+$primary-color-brighter:      #277cda;
+
+
+$dark-blue:                   #203746;
+
+$secondary-color-lighter:     #5acdaa;
+//$secondary-color:             #12b281;
+$secondary-color:             #2fbd92;
+
+$tertiary-color:              #8a4fab;
+$tertiary-color2:             #fd3868;
+
+$toolbar-bg:                  $primary-color-darker;
+$toolbar-text:                lighten(desaturate($primary-color-lightest, 15%), 15%);
+$toolbar-hover:               $primary-color-lighter;
+$toolbar-hover-text:          #fff;
+
+$sidebar-admin-color:         $primary-color-darker;
+$sidebar-item-active-color:   $primary-color-darkest;
+$sidebar-text-color:          lighten(desaturate($primary-color-lightest, 15%), 15%);
+
+$lens-disease:               #7ac1ac;
+$lens-food-safety:           #46b2c9;
+$lens-drug-safety:           #7199c6;
+$lens-brand-senitment:       #2e6cb0;
+$lens-patient-journey-experience:       #a681c1;
+$lens-patient-diagnosis:     #a6629a;
+$lens-custom:                $gray-dark;
+
+$category-Biovigilance:      $lens-food-safety;
+$category-Medvigilance: $lens-disease;
+$category-Toxicovigilance:   $lens-drug-safety;
+$category-search:            #fff;
+
+$text-color:                  $gray-darkest;
+$body-bg:                     $gray-lightest;
+
+$link-color:                  $primary-color;
+$link-hover-color:            lighten($primary-color,8%);
+
+//$table-cell-isselected-color:     #fcecc2;
+$table-cell-isselected-color:     #fff1cd;
+$table-cell-isselected-border:    darken($table-cell-isselected-color, 10%);
+$autosuggest-highlight-color:     #ffebae;
+$autosuggest-highlight-border-color:     darken($autosuggest-highlight-color, 5%);
+$table-cell-hasdata-color:      lighten($secondary-color, 47%);
+$table-cell-hasdata-border:     $table-cell-hasdata-color;
+$table-cell-isempty-color:      $gray-lighter;
+$table-cell-isempty-border:     $table-cell-isempty-color;
+$table-cell-istotal-color:      lighten($primary-color, 55%);
+$table-cell-istotal-border:     $table-cell-istotal-color;
+$table-cell-hasdata-source-color:      lighten($tertiary-color, 46%);
+$table-cell-hasdata-source-border:     $table-cell-hasdata-source-color;
+
+$positive:                    $secondary-color;
+$warning:                     $autosuggest-highlight-border-color;
+//$warning-dk:                  rgba(243, 156, 18,1.0);
+//$warning-dk:                  darken(saturate($autosuggest-highlight-border-color, 5%),10%);
+$warning-dk:                  #ffc946;
+
+$negative:                    $tertiary-color2;
+$neutral:                     $tertiary-color;
+
+$lenses: (disease, $lens-disease),
+         (food-safety, $lens-food-safety),
+         (drug-safety, $lens-drug-safety),
+         (brand-sentiment, $lens-brand-senitment),
+         (patient-journey-experience, $lens-patient-journey-experience),
+         (patient-diagnosis, $lens-patient-diagnosis),
+         (custom, $lens-custom);

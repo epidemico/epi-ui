@@ -1,0 +1,70 @@
+@import 'colors';
+@import 'mixins/spinner';
+@import 'mixins/_functions';
+
+$spinner-settings: (
+  xs: (
+    size: .75rem,
+    border-width: .15rem,
+  ),
+  sm: (
+    size: 1.25rem,
+    border-width: .25rem,
+  ),
+  md: (
+    size: 1.75rem,
+    border-width: .3rem,
+  ),
+  lg: (
+    size: 2.25rem,
+    border-width: .35rem,
+  ),
+  blue: (
+    bg-color: $gray,
+    border-color: $primary-color-brighter,
+  ),
+  white: (
+    bg-color: rgba(255,255,255,.7),
+    border-color: #fff,
+  ),
+);
+
+.spinner-container { // set showContainer in component if you want to center the spinner in a visible container
+  display: inline-block;
+  &.is-visible {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: $gray-lightest;
+  }
+}
+
+.spinner {
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  .circle {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    border-radius: 100%;
+    border-style: solid;
+    animation: spin 1s infinite linear;
+  }
+}
+
+.spinner--xs { @include spinner-size(xs) }
+.spinner--sm { @include spinner-size(sm) }
+.spinner--md { @include spinner-size(md) }
+.spinner--lg { @include spinner-size(lg) }
+
+.spinner--blue { @include spinner-color(blue) }
+.spinner--white { @include spinner-color(white) }
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}

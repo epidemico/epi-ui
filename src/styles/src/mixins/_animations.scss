@@ -1,0 +1,110 @@
+// TRANSITIONS AND ANIMATIONS
+
+@mixin transition($prop: all, $time: .3s, $type: ease) {
+  -webkit-transition: $prop $time $type;
+  -moz-transition: $prop $time $type;
+  -o-transition: $prop $time $type;
+  -ms-transition: $prop $time $type;
+  transition: $prop $time $type;
+}
+
+@mixin transform($transforms) {
+  -moz-transform: $transforms;
+  -o-transform: $transforms;
+  -ms-transform: $transforms;
+  -webkit-transform: $transforms;
+  transform: $transforms;
+}
+
+@mixin animation($animation...) {
+  -webkit-animation: $animation;
+  -khtml-animation: $animation;
+  -moz-animation: $animation;
+  -ms-animation: $animation;
+  -o-animation: $animation;
+  animation: $animation;
+}
+
+@mixin slider-buttons($position, $padding) {
+  text-align: $position;
+  @if $position == right {
+    padding-right: $padding;
+  } @else {
+    padding-left: $padding;
+  }
+}
+
+@mixin CSSTransitionSlideAnimation($element, $type, $start, $end) {
+  .slide#{$element}-#{$type} {
+    left: $start;
+    &.slide#{$element}-#{$type}-active {
+      left: $end;
+      @include transition(left, 600ms, ease);
+    }
+  }
+}
+
+@mixin CSSTransitionFadeSlideAnimation($element, $type, $startOpacity, $endOpacity, $startCoord, $endCoord) {
+  .fadeSlide#{$element}-#{$type} {
+    position: relative;
+    opacity: $startOpacity;
+    z-index: $z-index-modal;
+    .modal { // this should be dynamic so it can be used elsewhere
+      margin-top: $startCoord;
+    }
+    &.fadeSlide#{$element}-#{$type}-active {
+      opacity: $endOpacity;
+      @include transition(opacity, 400ms, ease);
+      .modal { // this should be dynamic so it can be used elsewhere
+        margin-top: $endCoord;
+        @include transition(margin-top, 400ms, ease);
+      }
+    }
+  }
+}
+
+//@mixin CSSTransitionPortfolioFilterAnimation($element, $type, $startOpacity, $endOpacity, $startCoord, $endCoord) {
+  // .fadeSlide#{$element}-#{$type} {
+  //   //position: fixed;
+  //   opacity: $startOpacity;
+  //   top: $startCoord;
+  //   //z-index: $z-index-filters;
+  //   .filter-nav { // this should be dynamic so it can be used elsewhere
+  //     top: $startCoord;
+  //   }
+  //   &.fadeSlide#{$element}-#{$type}-active {
+  //     top: $endCoord;
+  //     opacity: $endOpacity;
+  //     @include transition(all, 400ms, ease);
+  //     .filter-nav { // this should be dynamic so it can be used elsewhere
+  //       top: $endCoord;
+  //       @include transition(top, 400ms, ease);
+  //     }
+  //   }
+  // }
+//}
+
+@mixin CSSTransitionSlideHeight() {
+  .slideHeight-enter {
+    opacity: 0.01;
+    height: 0;
+  }
+
+  .slideHeight-enter.slideHeight-enter-active {
+    opacity: 1;
+    height: 500px;
+    transition: all 400ms ease-in;
+  }
+
+  .slideHeight-exit {
+    opacity: 1;
+    height: 500px;
+  }
+
+  .slideHeight-exit.slideHeight-exit-active {
+    opacity: 0.01;
+    height: 0;
+    transition: all 400ms ease-in;
+  }
+
+}

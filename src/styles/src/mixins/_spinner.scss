@@ -1,0 +1,14 @@
+@mixin spinner-size($size) {
+  width: getSetting($spinner-settings, $size, size);
+  height: getSetting($spinner-settings, $size, size);
+  .circle {
+    border-width: getSetting($spinner-settings, $size, border-width);
+  }
+}
+
+@mixin spinner-color($color) {
+  .circle {
+    border-color: getSetting($spinner-settings, $color, bg-color);
+    border-top-color: getSetting($spinner-settings, $color, border-color);
+  }
+}

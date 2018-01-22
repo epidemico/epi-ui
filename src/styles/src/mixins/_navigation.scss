@@ -1,0 +1,35 @@
+@mixin nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+  li {
+    cursor: pointer;
+    padding: .8rem .5rem;
+    text-transform: capitalize;
+    border-top: 1px solid $gray-lighter;
+    @include transition();
+    &:not('.nav-list--nohover') {
+      cursor: pointer;
+      &:hover, &:focus {
+        color: $primary-color-brighter;
+        background-color: $gray-lightest;
+      }
+    }
+    &:last-child {
+      border-bottom: 1px solid $gray-lighter;
+    }
+    &.is-active {
+      font-weight: 600;
+      color: $primary-color-brighter;
+    }
+  }
+  &.nav-list--sm {
+    width: auto;
+    margin-bottom: 1rem;
+    font-size: .7rem;
+    li {
+      padding: .4rem .8rem;
+    }
+  }
+}

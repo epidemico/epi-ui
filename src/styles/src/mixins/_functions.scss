@@ -1,0 +1,3 @@
+@function getSetting($which-settings, $size, $setting) {
+  @return map-get(map-get($which-settings, $size), $setting);
+}
