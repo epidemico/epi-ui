@@ -6,8 +6,8 @@ See a [demo of all components](https://epi-ui.surge.sh) or see them in productio
 
 ## Getting Started
 
-    npm install
-    npm start
+    yarn install
+    yarn start
 
 ## Contributing
 
@@ -17,4 +17,4 @@ in `/src` are the only ones you need to work with. For more info on contributing
 
 ## Publishing to npm and deploying demo site
 
-    npm run deploy
+    yarn deploy
