@@ -12,12 +12,8 @@
   ],
   "scripts": {
     "clean": "nwb clean-module && nwb clean-demo",
-    "start-js": "nwb serve-react-demo",
-    "start": "npm-run-all -p watch-css start-js",
-    "build-js": "nwb build-react-component",
-    "build": "npm-run-all build-css build-js",
-    "build-css": "node-sass-chokidar src/styles/src -o src/styles",
-    "watch-css": "npm run build-css && node-sass-chokidar src/styles/src -o src/styles --watch --recursive",
+    "start": "nwb serve-react-demo",
+    "build": "nwb build-react-component",
     "test": "nwb test-react",
     "test:coverage": "nwb test-react --coverage",
     "test:watch": "nwb test-react --server",
@@ -25,7 +21,6 @@
   },
   "dependencies": {
     "d3": "^3.5.17",
-    "npm-run-all": "^4.1.2",
     "sugar": "^2.0.4",
     "underscore": "^1.8.3"
   },
@@ -33,8 +28,8 @@
     "react": "16.x"
   },
   "devDependencies": {
-    "node-sass-chokidar": "^0.0.3",
     "nwb": "0.21.x",
+    "nwb-sass": "^0.8.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "surge": "^0.19.0"

@@ -1,6 +1,6 @@
 // @flow
 import React from 'react'
-import styles from './styles/spinner.css'
+import styles from './styles/spinner.scss'
 
 type PropTypes = {
   size: string,
