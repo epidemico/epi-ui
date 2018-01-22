@@ -59,10 +59,10 @@ const EpiUIBrowser = () => (
               {element}
             </div>
             <div className="col col-50p">
-              <h2 className="panel-title">Prop Types</h2>
-              <pre className="panel-heading">{propTypes}</pre>
-              <h2 className="panel-title">Default Props</h2>
-              <pre className="panel-heading">{defaultProps}</pre>
+              <h2>Prop Types</h2>
+              <pre>{propTypes}</pre>
+              <h2>Default Props</h2>
+              <pre>{defaultProps}</pre>
             </div>
           </div>
 
@@ -81,17 +81,17 @@ const EpiUIBrowser = () => (
             </code>
           </p>
           {Object.keys(EpiUI.icons).map(key => (
-            <button key={key}>
-              <div className="btn btn--disabled btn-round">
+            <div key={key} className="icon-btn-wrapper">
+              <div className="icon-btn">
                 <EpiUI.SvgIcon icon={key} size={0.9} label={key} hideLabel />
               </div>
               <label>{key}</label>
-            </button>
+            </div>
           ))}
         </div>
         <div className="col col-50p">
-          <h2 className="panel-title">Prop Types</h2>
-          <pre className="panel-heading">
+          <h2>Prop Types</h2>
+          <pre>
             [<br />
             "icon" (required)<br />
             "size" (optional)<br />
@@ -103,8 +103,8 @@ const EpiUIBrowser = () => (
             "stacked" (optional)<br />
             ]
           </pre>
-          <h2 className="panel-title">Default Props</h2>
-          <pre className="panel-heading">
+          <h2>Default Props</h2>
+          <pre>
             [<br />
             icon: Arrow<br />
             size: {0.8} (default is {1}, value interpreted in REM units)<br />
