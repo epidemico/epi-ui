@@ -1,0 +1,36 @@
+.axis line, .axis path {
+  fill: none;
+  stroke: #d0d5d8;
+  stroke-width: 1px;
+  shape-rendering: crispEdges;
+}
+
+.search-form div.ReactTags__selected span.ReactTags__tag {
+  display: none;
+}
+
+.axis .tick line {
+  stroke: #d0d5d8;
+}
+
+.axis text {
+  fill: #373a3c;
+  font-size: .8rem;
+}
+
+.axis.axis2 line, .axis.axis2 path {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 0;
+  shape-rendering: crispEdges;
+}
+
+.axis.axis2 text {
+  font-size: .9rem;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+}

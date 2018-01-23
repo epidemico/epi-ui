@@ -4,6 +4,8 @@ import _ from 'underscore'
 import d3 from 'd3'
 import Sugar from 'sugar'
 
+import styles from './styles/BarChart.css'
+
 const colors = [
   '#32abe3',
   '#e67e22',
