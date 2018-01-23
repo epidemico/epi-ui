@@ -68,6 +68,50 @@ export const Spinner = {
   size: 'lg',
 }
 
+export const Table = {
+  data: [
+    {
+      _id: 'tim',
+      name: 'Tim',
+      age: 25,
+      quote: '<strong>My name is Tim.</strong> <i>-Tim</i>',
+    },
+    {
+      _id: 'mike',
+      name: 'Mike',
+      age: 30,
+      quote: '<strong>My name is Mike.</strong> <i>-Mike</i>',
+    },
+    {
+      _id: 'sam',
+      name: 'Sam',
+      age: 28,
+      quote: '<strong>My name is Sam.</strong> <i>-Sam</i>',
+    },
+  ],
+  rowProps: {
+    // Click handler for the row
+    onClick: (e: any) => log(`Clicked on row with ID '${e.currentTarget.dataset.id}'`),
+  },
+  columnsConfig: [
+    {
+      key: 'name',
+      label: 'Name',
+    },
+    {
+      key: 'age',
+      label: 'Age',
+      // Click handler for the cell
+      onClick: (e: any) => log(`Clicked on age ${e.currentTarget.innerHTML}`),
+    },
+    {
+      key: 'quote',
+      label: 'Quote',
+      unsafe: true,
+    },
+  ],
+}
+
 /*
 export const Topics = {
   onChange: (error: Error, results: any) => log(results),
@@ -636,50 +680,6 @@ export const DateRangePicker = {
   onChange: log.bind(console),
 }
 
-
-export const Table = {
-  data: [
-    {
-      _id: 'tim',
-      name: 'Tim',
-      age: 25,
-      quote: '<strong>My name is Tim.</strong> <i>-Tim</i>',
-    },
-    {
-      _id: 'mike',
-      name: 'Mike',
-      age: 30,
-      quote: '<strong>My name is Mike.</strong> <i>-Mike</i>',
-    },
-    {
-      _id: 'sam',
-      name: 'Sam',
-      age: 28,
-      quote: '<strong>My name is Sam.</strong> <i>-Sam</i>',
-    },
-  ],
-  rowProps: {
-    // Click handler for the row
-    onClick: (e: any) => log(`Clicked on row with ID '${e.currentTarget.dataset.id}'`),
-  },
-  columnsConfig: [
-    {
-      key: 'name',
-      label: 'Name',
-    },
-    {
-      key: 'age',
-      label: 'Age',
-      // Click handler for the cell
-      onClick: (e: any) => log(`Clicked on age ${e.currentTarget.innerHTML}`),
-    },
-    {
-      key: 'quote',
-      label: 'Quote',
-      unsafe: true,
-    },
-  ],
-}
 
 
 export const ExplodeChart = {

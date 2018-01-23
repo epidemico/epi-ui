@@ -8,9 +8,10 @@ import Histogram from './Histogram'
 import HorizontalBarChart from './HorizontalBarChart'
 import Spinner from './Spinner'
 import SvgIcon from './SvgIcon'
+import Table from './Table'
 
 // Export individual components.
-export { demodata, icons, BarChart, Histogram, HorizontalBarChart, Spinner, SvgIcon }
+export { demodata, icons, BarChart, Histogram, HorizontalBarChart, Spinner, SvgIcon, Table }
 
 // Export a default object with all components.
 export default {
@@ -22,4 +23,5 @@ export default {
   HorizontalBarChart,
   Spinner,
   SvgIcon,
+  Table,
 }
