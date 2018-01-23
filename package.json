@@ -25,6 +25,10 @@
   },
   "dependencies": {
     "d3": "^3.5.17",
+    "immutability-helper": "^2.6.4",
+    "react-bootstrap-table": "^4.3.1",
+    "react-dnd": "^2.5.4",
+    "react-dnd-html5-backend": "^2.5.4",
     "sugar": "^2.0.4",
     "underscore": "^1.8.3"
   },
