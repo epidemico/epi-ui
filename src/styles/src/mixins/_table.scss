@@ -1,0 +1,52 @@
+@mixin emptyTableCell() {
+  border-color: $table-cell-isempty-border !important;
+  background-color: $table-cell-isempty-color!important;
+  background: repeating-linear-gradient(
+    -45deg,
+    $table-cell-isempty-color,
+    $table-cell-isempty-color 2px,
+    #fff 1px,
+    #fff 3px
+  ) !important;
+}
+
+@mixin selectedTableCell() {
+  border: 1px solid $table-cell-isselected-border;
+  background-color: $table-cell-isselected-color;
+  background: repeating-linear-gradient(
+    -45deg,
+    $table-cell-isselected-color,
+    $table-cell-isselected-color 2px,
+    #fff 1px,
+    #fff 3px
+  );
+}
+
+@mixin totalTableCell() {
+  border-color: $table-cell-istotal-border;
+  background-color: $table-cell-istotal-color;
+}
+
+%sentiment-dot {
+  div {
+    display: flex;
+    align-items: center;
+    &:before {
+      content: '';
+      display: block;
+      width: .5rem;
+      height: .5rem;
+      margin-right: .3rem;
+      border-radius: 50%;
+    }
+  }
+}
+
+@mixin sentiment-dot($color) {
+  @extend %sentiment-dot;
+  div {
+    &:before {
+      background-color: $color;
+    }
+  }
+}

@@ -1,0 +1,409 @@
+@import 'colors';
+@import 'variables';
+@import 'mixins/table';
+@import 'mixins/_functions';
+@import 'mixins/_animations';
+@import 'mixins/_box-shadow';
+
+table, .table {
+  width: 100%;
+  border-collapse: collapse;
+}
+// ** allow table to scroll horizontally
+
+.TableView {
+  width: 100%;
+  min-width: 100%;
+  height: auto;
+  overflow: hidden;
+
+  table.table {
+    min-width: 0;
+    max-width: none;
+  }
+
+  .react-bs-table {
+    overflow: auto;
+    height: auto;
+  }
+
+  .react-bs-table-no-data {
+    text-align: left;
+  }
+
+  .react-bs-table-container,
+  .react-bs-container-header,
+  .react-bs-container-body {
+    overflow: visible;
+    width: auto !important;
+    th, td {
+      white-space: normal;
+    }
+  }
+
+  .react-bs-table-container {
+    margin-bottom: 2rem;
+    padding-bottom: .5rem;
+    //border-top: 1px solid $gray-light;
+    border-bottom: 1px solid $gray-light;
+  }
+
+}
+
+.table-wrapper {
+  position: relative;
+}
+
+// .table-fade {
+//   position: absolute;
+//   top: 3.5rem;
+//   right: 0;
+//   bottom: 0;
+//   width: 12rem;
+//   background: -moz-linear-gradient(right,  rgba(255,255,255,0) 0%, rgba(246,246,246,1) 100%);
+//   background: -webkit-linear-gradient(right,  rgba(255,255,255,0) 0%,rgba(246,246,246,1) 100%);
+//   background: linear-gradient(to right,  rgba(255,255,255,0) 0%,rgba(246,246,246,1) 100%);
+//   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#f0f0f0',GradientType=0 );
+//   z-index: 199;
+// }
+
+.table--has-fade {
+  .table-fade {
+    display: block;
+  }
+}
+
+.table-fade {
+  display: none;
+  position: absolute;
+  //top: 3.2rem;
+  top: $grid-block-size;
+  bottom: 0;
+  background-color: $gray-lightest;
+  z-index: 1;
+  &.table-fade--left {
+    width: $grid-block-size;
+    left: -$grid-block-size;
+    @include box-shadow($table-shadow-right);
+  }
+  &.table-fade--right {
+    width: $toolbar-content-buffer;
+    right: -$toolbar-content-buffer;
+    @include box-shadow($table-shadow-left);
+  }
+}
+
+
+/* START: For table children indentations */
+
+
+tr.added {
+  color: red;
+}
+
+tr.level-1 {
+  margin-left: 2.1rem;
+}
+
+tr.level-1 td {
+  padding-left: 2.1rem;
+}
+
+tr.level-2 td {
+  padding-left: 3.3rem;
+}
+
+tr.level-3 td {
+  padding-left: 4.6rem;
+}
+
+tr.level-4 td {
+  padding-left: 5.9rem;
+}
+
+span.expand-btn {
+  padding-right: .3rem;
+  cursor: pointer;
+}
+
+th, td {
+  position: relative;
+  &:focus {
+    outline: none; // remove blue glow when cell clicked in Chrome
+  }
+  @include transition(all, .3s, ease);
+}
+
+.manage-wrapper {
+  tr:hover td {
+    background-color: $gray-lighter;
+    .crud-nav {
+      opacity: 1;
+    }
+  }
+}
+
+.remove-row {
+  right: 0;
+  //position: relative;
+}
+
+
+/* END: For table children indentations */
+
+
+
+table {
+  background-color: transparent;
+  width: auto;
+  //width: 100%;
+  font-weight: 400;
+}
+
+table + table, p + table {
+  margin: 2rem 0;
+}
+
+th, td {
+  padding: $table-cell-default-padding-y $table-cell-default-padding-x;
+  line-height: $line-height;
+  text-align: left;
+}
+
+td {
+  font-family: $font-family-serif;
+  font-size: .8rem;
+  vertical-align: middle;
+  border-top: $table-border-width solid $table-border-color;
+  background-color: #fff;
+}
+
+thead th {
+  padding-bottom: .5rem;
+  color: $gray-darker;
+  font-size: .65rem;
+  font-weight: 200;
+  letter-spacing: .05rem;
+  text-transform: uppercase;
+  vertical-align: bottom;
+  //border-bottom: (2 * $table-border-width) solid $table-border-color;
+  background-color: transparent;
+  .order {
+    display: none; // not sure where this comes from, but let's hide it
+  }
+}
+
+
+
+h2 + .table-blocks { // FIX: need to make margins work consistently across all combos - this is an unscalable hack
+  margin-top: -1rem;
+}
+
+tbody {
+  border-left: 1px solid $gray-lighter;
+  border-right: 1px solid $gray-lighter;
+  border-bottom: 1px solid $gray-lighter;
+}
+
+tr.disabled-row {
+  color: $gray;
+}
+
+.table-blocks {
+  background-color: #fff;
+  border-collapse: separate;
+  border-spacing: 1px;
+  thead th {
+    padding: 0;
+    border-bottom-width: 1px;
+    &:first-of-type {
+      border: 0;
+    }
+  }
+  tbody th {
+    width: 12rem;
+    font-weight: normal;
+    font-size: .7rem;
+  }
+  tbody:before { // create gap between thead and tbody - can't use margins
+    content: "_";
+    display: block;
+    color: white;
+    line-height: .3rem;
+  }
+  .th-timeline { // need a wrapper for the content in order to generate the dot for the date headers using ::after psuedo-class
+    position: relative;
+    display: block;
+    padding: $table-cell-default-padding-y $table-cell-default-padding-x;
+    text-align: center;
+  }
+  .th-timeline:after {
+    position: absolute;
+    bottom: -4px;
+    content: "";
+    display: block;
+    left: 50%;
+    margin-left: -2px;
+    width: 5px;
+    height: 5px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: #ccc;
+  }
+  td {
+    font-size: .8rem;
+    text-align: center;
+  }
+
+  // styles for colored blocks
+
+  .level1 {
+    th {
+      background-color: darken($table-cell-hasdata-color, 3%);
+      //border-top: 1px solid $gray-lightest;
+    }
+    td {
+      background-color: $table-cell-hasdata-color;
+      border: 1px solid $table-cell-hasdata-border;
+    }
+  }
+
+  .level2 {
+    th {
+      padding: $table-cell-sublevel-padding-y $table-cell-sublevel-padding-x $table-cell-sublevel-padding-y 2.2rem;
+    }
+    td {
+      padding: $table-cell-sublevel-padding-y $table-cell-sublevel-padding-x;
+      background-color: $table-cell-hasdata-source-color;
+      border: 1px solid $table-cell-hasdata-source-border;
+    }
+  }
+
+  .level3 {
+    th {
+      padding: $table-cell-sublevel-padding-y $table-cell-sublevel-padding-x $table-cell-sublevel-padding-y 4.4rem;
+    }
+    td {
+      padding: $table-cell-sublevel-padding-y $table-cell-sublevel-padding-x;
+      background-color: $table-cell-hasdata-source-color;
+      border: 1px solid $table-cell-hasdata-source-border;
+    }
+  }
+
+  // data status colors
+  th.is-total {
+    background-color: darken($table-cell-istotal-color, 3%);
+  }
+  .level1 td, .level2 td, .level3 td {
+    &.is-empty {
+      @include emptyTableCell();
+    }
+    &.is-selected {
+      position: relative;
+      @include selectedTableCell();
+    }
+    &.is-total {
+      @include totalTableCell();
+    }
+  }
+
+}
+
+.mini-table {
+  margin: 0;
+  padding: 0;
+  tbody {
+    border: 0;
+  }
+  tr {
+    &:nth-child(odd) {
+      background-color: $gray-lightest;
+    }
+  }
+  th {
+    padding: .6rem .8rem;
+    font-weight: 400;
+  }
+  td {
+    padding: .6rem .8rem;
+    font-weight: 400;
+    background-color: transparent;
+    border: 0;
+  }
+}
+
+/*
+** override react-bs-table styles
+** FIXME: is it possible to remove some of these styles instead of overriding them?
+*/
+
+.pagination li.active a {
+  color: #fff;
+  background-color: #1E63B0;
+  border-color: transparent;
+}
+
+.react-bs-table {
+  border-radius: 0 !important;
+  border: 0 !important;
+  margin: 0 !important;
+  table td {
+    white-space: normal !important;
+  }
+}
+
+.table-wrapper .react-bs-table-tool-bar {
+  margin: 0;
+}
+
+.react-bs-custom-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  height: $grid-block-size;
+  padding: 0 1rem .5rem 1rem;
+  border-bottom: 1px solid $gray-light;
+  .hover-menu-wrapper {
+    margin: 0 .5rem 0 0;
+  }
+  .form-field {
+    margin: 0;
+    width: 20rem;
+  }
+}
+
+
+.is-empty {
+  @include emptyTableCell();
+}
+
+td.is-selected {
+  position: relative;
+  @include selectedTableCell();
+}
+table img {
+  width: 42px;
+  border-radius: 100%;
+  margin-right: 20px;
+}
+
+.positive-sentiment {
+  @include sentiment-dot($positive);
+}
+
+.negative-sentiment {
+  @include sentiment-dot($negative);
+}
+
+.neutral-sentiment {
+  @include sentiment-dot($warning);
+}
+
+.offline {
+  background: rgba(231, 76, 60, 0.5);
+}
+
+.online {
+  background: rgba(39, 174, 96, 0.5);
+}

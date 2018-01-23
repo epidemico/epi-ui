@@ -1,0 +1,166 @@
+@import 'colors';
+
+// GENERAL
+$font-family-base:                   'OpenSans', Helvetica, sans-serif; // local Open Sans
+$font-family-serif:                   $font-family-base;
+$font-size-base:                      1rem;
+$line-height:                         1.3;
+
+$font-size-lg:                        .9rem;
+$line-height-lg:                      $line-height;
+$font-size-md:                        .8rem;
+$font-size-sm:                        .7rem;
+$line-height-sm:                      $line-height;
+$font-size-xs:                        .6rem;
+$line-height-xs:                      $line-height;
+
+// LAYOUT
+$grid-block-size:                     3rem;
+
+$landing-header-width:                40vw;
+$landing-content-width:               60vw;
+
+$text-input-height:                   3rem;
+$search-box-width:                    3rem;
+$search-box-height:                   $text-input-height;
+$header-height:                       4rem;
+$filter-bar-height:                   2rem;
+$admin-nav-height:                    4rem;
+$filter-nav-height:                   2.5rem;
+$map-tool-bar-height:                 3rem;
+$layers-width:                        22rem;
+$admin-sidebar-width:                 18rem;
+$toolbar-content-buffer:              3rem;
+$footer-min-height:                   3rem;
+
+$finder-outer-height:                 30rem;
+$finder-header-height:                3rem;
+$finder-inner-height:                 $finder-outer-height - $finder-header-height;
+
+// GLOBAL Z-INDEXES
+$z-index-loader:                      9; // should always be the highest
+$z-index-modal:                       8;
+$z-index-modal-bg:                    $z-index-modal - 1; // should always be 1 below modal
+$z-index-bug-submitter:               6;
+$z-index-filters:                     5;
+$z-index-portfolio-toolbar:           4;
+$z-index-app-header:                  3;
+$z-index-portfolio-sidebar:           3;
+$z-index-portfolio-header:            2;
+$z-index-breadcrumb:                  1;
+
+// CARDS
+
+$card-width: 14rem;
+$card-quickview-width: 25rem;
+$card-min-height: 18rem;
+$card-header-height: 6rem;
+$card-header-height-mini: 5rem;
+$card-border-radius: .3rem;
+
+$toolbar-width: 4rem;
+//$portfolio-sidebar-width:  $card-width + $toolbar-width;
+$app-nav-height: 1.8rem;
+
+
+// FORMS
+
+$input-padding-x:                .7em;
+$input-padding-y:                .375rem;
+$input-padding-x-lg:                1em;
+$input-padding-y-lg:                .8rem;
+$input-height:                   (($font-size-base * $line-height) + ($input-padding-y * 2));
+
+$input-bg:                       #fff;
+$input-bg-disabled:              $gray-lighter;
+$input-color:                    $gray;
+$input-border-color:             #ccc;
+
+$input-btn-border-width:         1px;
+$input-border-radius:            3px;
+$input-color-placeholder:        #999;
+
+$form-group-margin-bottom:       1rem;
+
+$cursor-disabled:                not-allowed;
+
+
+// BUTTONS
+
+$btn-padding-y:                       .3rem;
+$btn-padding-x:                       .8rem;
+$btn-border-width:                    1px;
+$btn-border-width-active:             1px;
+$btn-border-radius:                   1rem;
+
+$btn-padding-y-lg:                    .7rem;
+$btn-padding-x-lg:                    1rem;
+//$btn-border-width-lg:               1px;
+$btn-border-radius-lg:                1.5rem;
+
+$btn-padding-y-sm:                    .3rem;
+$btn-padding-x-sm:                    .6rem;
+$btn-border-radius-sm:                .8rem;
+
+$btn-padding-y-xs:                    .2rem;
+$btn-padding-x-xs:                    .4rem;
+$btn-border-radius-xs:                .8rem;
+
+// TABLES
+$table-border-width:                  1px;
+$table-cell-default-padding-x:        1rem;
+$table-cell-default-padding-y:        .8rem;
+$table-cell-sublevel-padding-x:       1rem;
+$table-cell-sublevel-padding-y:       .3rem;
+$table-border-color:                  $gray-lighter;
+$table-bg:                            transparent;
+
+
+$sidebar-options-width:               $header-height;
+//$panel-heading-height: $header-height;
+
+$box-shadow:                          1px 1px 6px 0px rgba(0,0,0,0.10);
+$box-shadow-hover:                    0px 0px 3px 3px rgba(0,0,0,0.17);
+$box-shadow-bottom:                   0 10px 12px -8px rgba(0,0,0,0.10);
+$box-shadow-top:                      0 -10px 12px -9px rgba(0,0,0,0.20);
+$box-shadow-right:                    2px 0 12px 0 rgba(0,0,0,0.30);
+$box-shadow-left:                     2px 0 12px 0 rgba(0,0,0,0.30);
+$box-shadow-inset-top:                inset 0 6px 6px -6px rgba(0,0,0,0.30);
+$box-shadow-inset-bottom:             inset 0 -6px 6px -6px rgba(0,0,0,0.30);
+$box-shadow-inset-left:               inset 6px 0 8px -6px rgba(0,0,0,0.30);
+$box-shadow-input-focus:              1px 1px 6px 0px rgba(39,124,218,0.20);
+
+$table-shadow-right:                  1px 0 14px -1px rgba(0,0,0,0.25);
+$table-shadow-left:                   -1px 0 14px -1px rgba(0,0,0,0.25);
+
+$filter-options-bottom-position:      40vh;
+
+// TAGS
+$tag-min-height: 1.4rem;
+$tag-padding: .2rem .4rem;
+
+// ANIMATIONS
+
+$landing-transition:                  left 600ms ease;
+
+// SETTINGS
+
+// on/off switch
+$onoffswitch-settings: (
+  default: (
+    width: 6rem,
+    pseudo-padding: .8rem,
+    font-size: .7rem,
+    toggle-size: 1rem,
+    toggle-h-margin: .5rem,
+    toggle-v-margin: .35rem,
+  ),
+  sm: (
+    width: 3.5rem,
+    pseudo-padding: .5rem,
+    font-size: .6rem,
+    toggle-size: .7rem,
+    toggle-h-margin: .25rem,
+    toggle-v-margin: .2rem,
+  ),
+);
