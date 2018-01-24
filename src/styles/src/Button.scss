@@ -1,0 +1,168 @@
+@import 'mixins/_animations';
+@import 'mixins/_box-shadow';
+@import 'mixins/_buttons';
+@import 'mixins/_list';
+
+.btn {
+  @include btn();
+}
+
+.btn-round { @include btn-round(2rem); }
+.btn-round-sm { @include btn-round(1.5rem); }
+.btn-round-xs { @include btn-round(1.2rem); }
+
+
+//
+// Alternate buttons
+// button-variant($text-default, $background-default, $border-default, $text-hover, $background-hover, $border-hover, $text-active, $background-active, $border-active)
+//
+
+.btn-primary {
+  @include button-variant(#fff, lighten($primary-color,10%), transparent, #fff, lighten($primary-color,20%), transparent, $gray, #fff, $primary-color);
+}
+.btn-primary-dark {
+  @include button-variant(#fff, lighten($primary-color-darker,10%), transparent, #fff, lighten($primary-color-darker,20%), transparent, $gray, #fff, $primary-color-darker);
+}
+.btn-primary-reverse {
+  @include button-variant($gray-dark, #fff, $gray-light, #fff, $primary-color, transparent, $gray-darker, #fff, $primary-color);
+}
+.btn-secondary, .btn-success {
+  @include button-variant(#fff, $secondary-color, $secondary-color, #fff, lighten($secondary-color,10%), lighten($secondary-color,10%), $gray, #fff, $secondary-color);
+}
+.btn-secondary-reverse {
+  @include button-variant($gray-dark, #fff, $gray-light, #fff, $secondary-color, transparent, $gray-darker, #fff, $secondary-color);
+}
+.btn-tertiary {
+  @include button-variant(#fff, $tertiary-color, $tertiary-color, #fff, lighten($tertiary-color,10%), lighten($tertiary-color,10%), $gray, #fff, $tertiary-color);
+}
+.btn-tertiary-reverse {
+  @include button-variant($gray-dark, #fff, $gray-light, #fff, $tertiary-color, transparent, $gray-darker, #fff, $tertiary-color);
+}
+.btn-gray {
+  @include button-variant($gray-darkest, $gray-lightest, $gray-light, $gray-darkest, $gray-light, $gray, #fff, $secondary-color, $secondary-color);
+}
+.btn-danger, .btn-negative {
+  @include button-variant(#fff, $tertiary-color2, $tertiary-color2, #fff, darken($tertiary-color2,10%), darken($tertiary-color2,10%), $gray, #fff, $tertiary-color2);
+}
+
+.btn--disabled {
+  @include button-variant($gray-darkest, $gray-lightest, $gray-light, $gray-darkest, $gray-lightest, $gray-light, $gray-darkest, $gray-lightest, $gray-light);
+}
+
+
+.btn-white-to-primary {
+  @include button-variant($gray-darker, #fff, $gray-lighter, #fff, lighten($primary-color,10%), lighten($primary-color,10%), #fff, $primary-color, $primary-color);
+}
+.btn-white-to-secondary {
+  @include button-variant($gray-darker, #fff, $gray-lighter, #fff, lighten($secondary-color,4%), lighten($secondary-color,4%), #fff, $secondary-color, $secondary-color);
+}
+
+.btn-gray-to-primary {
+  @include button-variant($gray-dark, #fff, $gray-lighter, #fff, lighten($primary-color,10%), lighten($primary-color, 10%), #fff, $primary-color, $primary-color);
+}
+.btn-gray-to-secondary {
+  @include button-variant($gray-dark, #fff, $gray-lighter, #fff, lighten($secondary-color,10%), lighten($secondary-color, 10%), #fff, $secondary-color, $secondary-color);
+}
+
+//
+// Button Sizes
+//
+
+.btn-lg {
+  // line-height: ensure even-numbered height of button next to large input
+  @include button-size($btn-padding-y-lg, $btn-padding-x-lg, $font-size-md, $line-height-lg, $btn-border-radius-lg);
+}
+
+.btn-sm {
+  // line-height: ensure even-numbered height of button next to large input
+  @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $font-size-sm, $line-height-sm, $btn-border-radius-sm);
+}
+
+.btn-xs {
+  // line-height: ensure even-numbered height of button next to large input
+  @include button-size($btn-padding-y-xs, $btn-padding-x-xs, $font-size-xs, $line-height-xs, $btn-border-radius-xs);
+}
+
+// List of buttons
+
+.btn-list {
+  @include list-unstyled();
+  margin: 1rem 0;
+  > li {
+    margin: 0 .5rem;
+  }
+}
+
+.btn-list--inline {
+  display: flex;
+  margin: 0;
+  > li {
+    display: flex;
+    margin: 0 .3rem 0 0;
+  }
+}
+
+.btn-list--centered {
+  text-align: center;
+}
+
+.btn-list--buttonbar {
+  display: inline-block;
+  >.btn {
+    min-width: 3.6rem;
+    text-align: center;
+    border-radius: 0;
+    &:first-child {
+      border-top-left-radius: $btn-border-radius-xs;
+      border-bottom-left-radius: $btn-border-radius-xs;
+    }
+    &:last-child {
+      border-top-right-radius: $btn-border-radius-xs;
+      border-bottom-right-radius: $btn-border-radius-xs;
+    }
+  }
+}
+
+.dropdown-button {
+  display: flex;
+  align-items: center;
+}
+
+.tracer-btn {
+  width: auto;
+  white-space: nowrap;
+  padding: 0.3rem 0.8rem;
+  line-height: 1.3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: .7rem;
+  border-radius: 1rem;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: all .3s ease;
+  &.hidden {
+    opacity: 0;
+    display: none;
+  }
+}
+
+.btn * {
+  cursor: pointer; // So all buttons look clickable despite children default cursors
+}
+
+.button-list {
+  @include button-list();
+}
+
+
+// SPECIFIC BUTTONS
+
+.add-button button {
+  @extend .btn;
+  @extend .btn-primary;
+  @extend .btn-sm;
+  padding: .5rem 1rem;
+  //@extend .btn-lg;
+  //margin-bottom: 2rem;
+}

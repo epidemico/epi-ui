@@ -1,0 +1,166 @@
+.dropdown {
+  //position: relative;
+}
+
+.dropdown-toggle {
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  //margin-top: .5rem;
+  width: 100%;
+  font-size: .8rem;
+  text-align: left;
+  background-color: #fff;
+  border: 1px solid $gray-lighter;
+  @include box-shadow($box-shadow);
+}
+
+.is-open .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu.is-open {
+  display: block;
+}
+
+.dropdown-item {
+  padding: .8rem 1rem;
+  border-bottom: 1px solid $gray-lighter;
+  cursor: pointer;
+  &:hover {
+    background-color: $gray-lightest;
+    //background-color: lighten($primary-color, 51%);
+  }
+  &:last-of-type {
+    border-bottom: 0;
+  }
+}
+
+$hover-menu-width: 12rem;
+$hover-menu-wrapper-height: 4rem;
+
+@mixin hover-menu() {
+  position: relative;
+  //display: inline-block;
+  .hover-menu {
+    display: none;
+    position: absolute;
+    padding: .5rem;
+    background-color: #fff;
+    border: 1px solid $gray-lighter;
+    z-index: 1;
+    @include box-shadow($box-shadow);
+    list-style: none;
+    margin: 0;
+    //padding: 0;
+    font-weight: 400;
+    font-size: .8rem;
+    text-align: left;
+    color: $gray-darkest;
+    li {
+      display: block;
+      padding: .5rem 1.5rem .5rem 1rem;
+      text-transform: none;
+      cursor: default;
+      //width: 5rem;
+      &:not('.list-item--nohover') {
+        cursor: pointer;
+        &.is-active {
+          color: $primary-color-brighter;
+          font-weight: 600;
+        }
+        &:hover {
+          background-color: $gray-lightest;
+        }
+      }
+      label {
+        margin: 0;
+      }
+    }
+    a, a:hover, a:focus, a:visited, a:active {
+      color: $gray-darkest;
+    }
+    &.has-columns {
+      -moz-column-count: 2;
+      -moz-column-gap: 1rem;
+      -webkit-column-count: 2;
+      -webkit-column-gap: 1rem;
+      column-count: 2;
+      column-gap: 1rem;
+      li {
+        display: inline-block;
+        // must be inline-block to prevent a bug with spanning across columns (lang in taxonomy)
+      }
+    }
+    li:hover {
+      cursor: pointer;
+      background-color: $gray-lightest;
+      &.list-item--nohover {
+        background-color: #fff;
+      }
+    }
+  }
+  &:hover {
+    .hover-menu {
+      display: block;
+    }
+  }
+}
+
+.hover-menu-wrapper {
+  @include hover-menu();
+  margin-bottom: 1rem;
+  h2 {
+    margin: 0;
+    padding: 1rem 0 0 0;
+    @extend .text-xl;
+  }
+  .hover-menu {
+    &.hover-menu-condensed {
+      li {
+        cursor: pointer;
+        padding: .3rem 1rem;
+      }
+    }
+  }
+}
+
+.hover-menu-trigger {
+  display: flex;
+  align-items: center;
+  //min-width: 10rem; // why a min-width??
+  //height: $app-nav-height; // why a height?
+  //padding: 0 1rem;
+  //background-color: $primary-color;
+  cursor: pointer;
+}
+
+.hover-menu-heading {
+  text-transform: uppercase;
+  margin-bottom: .5rem;
+  padding: .5rem 1rem;
+  color: $primary-color;
+  border-bottom: 1px solid $gray-lighter;
+  cursor: default;
+}
+
+// hides the tooltip stuff in the dropdown menu of toggleable column names
+.hover-menu.columns-controls {
+  width: 12rem;
+  li {
+    cursor: auto;
+    text-transform: capitalize;
+    &:hover {
+      background-color: #fff;
+    }
+  }
+  .svg-icon {
+    display: none;
+  }
+  .tooltip-info, .tooltip-info-influence {
+    position: relative;
+  }
+}
