@@ -9,6 +9,8 @@ import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table'
 
 import TableDraggableColumn from './TableDraggableColumn'
 
+import styles from './styles/Table.css'
+
 type PropTypes = {
   keyField: string,
   columnsConfig: Array<Object>,
@@ -18,7 +20,7 @@ type PropTypes = {
   draggable: boolean,
   exportCSV: boolean,
   filterable: Array<number>,
-  filteredColumns: Array<Object>,
+  filteredColumns?: Array<Object>,
   hover: boolean,
   onColumnDragged: Function,
   options: Object,
@@ -32,7 +34,7 @@ type PropTypes = {
 
 type StateTypes = {
   columnsConfig: Array<Object>,
-  filteredColumns: Array<Object>,
+  filteredColumns?: Array<Object>,
 }
 
 class Table extends React.Component<PropTypes, StateTypes> {
@@ -90,7 +92,7 @@ class Table extends React.Component<PropTypes, StateTypes> {
     var reorderColumnsConfig = update(columnsConfig, {
       $splice: [[dragIndex, 1], [hoverIndex, 0, dragColumn]],
     })
-    var reorderFilteredColumns = update(filteredColumns, {
+    var reorderFilteredColumns = update(filteredColumns || columnsConfig, {
       $splice: [[dragIndex, 1], [hoverIndex, 0, dragColumn]],
     })
 
