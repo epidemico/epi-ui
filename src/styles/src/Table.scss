@@ -8,6 +8,16 @@
 @import 'dropdown';
 @import 'text';
 
+table {
+  // Reset for nesting within parents with `background-color`.
+  background-color: $table-bg;
+}
+
+th {
+  // Centered by default, but left-align-ed to match the `td`s below.
+  text-align: left;
+}
+
 table, .table {
   width: 100%;
   border-collapse: collapse;
