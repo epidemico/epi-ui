@@ -9,13 +9,12 @@ import HorizontalBarChart from './HorizontalBarChart'
 import Spinner from './Spinner'
 import SvgIcon from './SvgIcon'
 import Table from './Table'
-import TableDraggableColumn from './TableDraggableColumn'
 
 // Export data.
 export { demodata, icons }
 
 // Export individual components.
-export { BarChart, Histogram, HorizontalBarChart, Spinner, SvgIcon, Table, TableDraggableColumn }
+export { BarChart, Histogram, HorizontalBarChart, Spinner, SvgIcon, Table }
 
 // Export a default object with all modules.
 export default {
@@ -27,5 +26,4 @@ export default {
   Spinner,
   SvgIcon,
   Table,
-  TableDraggableColumn,
 }
