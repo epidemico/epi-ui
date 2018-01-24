@@ -1,46 +1,56 @@
-.demo {
+body {
   color: #555;
   font-family: "OpenSans", Helvetica, sans-serif;
   font-weight: 200;
-  line-height: 1.3;
 }
 
-.demo a {
+.demo-header a {
   text-decoration: none;
 }
 
-.demo button {
+.demo-header button {
   padding: 5px;
   margin: 1px;
+  border: 1px solid #ccc;
+  border-radius: 1rem;
 }
 
-.demo button a {
+.demo-header button a {
   color: inherit !important;
 }
 
-.demo .col {
+.demo-body .col {
   display: inline-block;
 }
 
-.demo .col-50p {
+.demo-body .col-50p {
   width: 50%;
   vertical-align: top;
 }
 
-.demo .github {
+.demo-body pre {
+  background: #efefef;
+  border-radius: 0.3rem;
+  display: inline-block;
+  overflow: auto;
+  padding: 0.5rem;
+  width: 80%;
+}
+
+.demo-body .github {
   position: absolute;
   top: 0;
   right: 0;
   border: 0;
 }
 
-.demo .version {
+.demo-body .version {
   position: absolute;
   top: 4px;
   right: 4px;
 }
 
-.demo .icon-btn-wrapper {
+.demo-body .icon-btn-wrapper {
   display: inline-block;
   width: 4rem;
   height: 4rem;
@@ -48,7 +58,7 @@
   padding: .5rem;
 }
 
-.demo .icon-btn {
+.demo-body .icon-btn {
   align-items: center;
   background-color: #f6f6f6;
   border-color: #dedede;
@@ -63,7 +73,7 @@
   margin: auto;
 }
 
-.demo label {
+.demo-body label {
   font-size: .6rem;
   white-space: nowrap;
 }
