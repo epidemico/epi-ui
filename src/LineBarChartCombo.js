@@ -6,6 +6,7 @@ import moment from 'moment'
 
 import { colors } from './themes'
 import nv from './lib/nvd3'
+import nvStyles from './lib/nvd3.css'
 
 type PropTypes = {
   changePerspective?: Function,
