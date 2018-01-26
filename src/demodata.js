@@ -64,6 +64,40 @@ export const HorizontalBarChart = {
   ],
 }
 
+export const LineBarChartCombo = {
+  data: [
+    {
+      key: 'volume',
+      values: [
+        { y: 6, x: +new Date('2017-03-01') },
+        { y: 14, x: +new Date('2017-03-02') },
+        { y: 18, x: +new Date('2017-03-03') },
+        { y: 17, x: +new Date('2017-03-04') },
+        { y: 19, x: +new Date('2017-03-05') },
+        { y: 15, x: +new Date('2017-03-06') },
+        { y: 18, x: +new Date('2017-03-07') },
+      ],
+    },
+  ],
+  onBrush: log,
+  perspectiveBtns: true,
+  subPerspective: {
+    source: false,
+    topics: false,
+  },
+  yaxis: null,
+  sources: {
+    'all sources': false,
+    news: false,
+    forum: false,
+    social: false,
+  },
+  perspective: {
+    volume: true,
+    sentiment: false,
+  },
+}
+
 export const Spinner = {
   size: 'lg',
 }
@@ -619,40 +653,6 @@ export const DataCoverage = {
       },
     },
   ],
-}
-
-export const LineBarChartCombo = {
-  data: [
-    {
-      key: 'volume',
-      values: [
-        { y: 6, x: +new Date('2017-03-01') },
-        { y: 14, x: +new Date('2017-03-02') },
-        { y: 18, x: +new Date('2017-03-03') },
-        { y: 17, x: +new Date('2017-03-04') },
-        { y: 19, x: +new Date('2017-03-05') },
-        { y: 15, x: +new Date('2017-03-06') },
-        { y: 18, x: +new Date('2017-03-07') },
-      ],
-    },
-  ],
-  onBrush: log,
-  perspectiveBtns: true,
-  subPerspective: {
-    source: false,
-    topics: false,
-  },
-  yaxis: null,
-  sources: {
-    'all sources': false,
-    news: false,
-    forum: false,
-    social: false,
-  },
-  perspective: {
-    volume: true,
-    sentiment: false,
-  },
 }
 
 export const DictionaryMap = {
