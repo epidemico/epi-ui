@@ -5222,6 +5222,10 @@ number-is-nan@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
 
+nvd3@^1.8.6:
+  version "1.8.6"
+  resolved "https://registry.yarnpkg.com/nvd3/-/nvd3-1.8.6.tgz#2d3eba74bf33363b5101ebf1d093c59a53ae73c4"
+
 nwb@0.21.x:
   version "0.21.2"
   resolved "https://registry.yarnpkg.com/nwb/-/nwb-0.21.2.tgz#728be9156dfb27893a5d45a55db851de146b42fb"

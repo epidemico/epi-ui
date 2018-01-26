@@ -2,11 +2,11 @@
 import * as React from 'react'
 import _ from 'underscore'
 import d3 from 'd3'
+import nvd3 from 'nvd3'
 import moment from 'moment'
 
 import { colors } from './themes'
-import nv from './lib/nvd3'
-import nvStyles from './lib/nvd3.css'
+import nvStyles from './styles/nvd3.css'
 
 type PropTypes = {
   changePerspective?: Function,
@@ -56,10 +56,12 @@ export default class LineBarChartCombo extends React.Component<PropTypes, StateT
         .toString(16)
         .substr(2)}`
 
-    this.defaultChart = nv.models[props.showBrush ? 'lineWithFocusChart' : 'lineChart'](extent => {
-      props.onBrush && props.onBrush(extent)
-    }).color(colors)
-    this.defaultSmoothChart = nv.models[props.showBrush ? 'lineWithFocusChart' : 'lineChart'](
+    this.defaultChart = nvd3.models[props.showBrush ? 'lineWithFocusChart' : 'lineChart'](
+      extent => {
+        props.onBrush && props.onBrush(extent)
+      }
+    ).color(colors)
+    this.defaultSmoothChart = nvd3.models[props.showBrush ? 'lineWithFocusChart' : 'lineChart'](
       extent => {
         props.onBrush && props.onBrush(extent)
       }
@@ -73,13 +75,13 @@ export default class LineBarChartCombo extends React.Component<PropTypes, StateT
       chart: {
         'Line Chart': this.defaultChart,
         'Smooth Line Chart': this.defaultSmoothChart,
-        'Bar Chart': nv.models
+        'Bar Chart': nvd3.models
           .multiBarChart()
           .reduceXTicks(true) //If 'false', every single x-axis tick label will be rendered.
           .rotateLabels(0) //Angle to rotate x-axis labels.
           .showControls(true) //Allow user to switch between 'Grouped' and 'Stacked' mode.
           .groupSpacing(0.1), //Distance between each group of bars.
-        'Line Bar Combo': nv.models
+        'Line Bar Combo': nvd3.models
           .multiChart()
           .margin({ top: 50, right: 80, bottom: 30, left: 80 })
           .color(colors),
@@ -95,7 +97,7 @@ export default class LineBarChartCombo extends React.Component<PropTypes, StateT
       const domExists = d3.select(svgPath)[0][0]
       if (domExists || maxInterval-- < 0) clearInterval(findChart)
       if (domExists) {
-        nv.addGraph(() => {
+        nvd3.addGraph(() => {
           // A fix to align the ticks
           // chart.xAxis.tickValues((values) => {
           //   return _.map(values[0].values, (v) => {
