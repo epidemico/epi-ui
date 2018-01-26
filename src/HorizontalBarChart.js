@@ -2,6 +2,7 @@
 import React, { PureComponent } from 'react'
 import d3 from 'd3'
 import { sortBy } from 'underscore'
+import { colors } from './themes'
 
 type PropTypes = {
   data: [Object],
@@ -15,24 +16,7 @@ export default class HorizontalBarChart extends PureComponent<PropTypes> {
     data: [],
     margin: { top: 20, right: 20, bottom: 30, left: 100 },
     onBarClick: () => {},
-    colors: [
-      '#0000b4',
-      '#0082ca',
-      '#0094ff',
-      '#0d4bcf',
-      '#0066AE',
-      '#074285',
-      '#00187B',
-      '#285964',
-      '#405F83',
-      '#416545',
-      '#4D7069',
-      '#6E9985',
-      '#7EBC89',
-      '#0283AF',
-      '#79BCBF',
-      '#99C19E',
-    ],
+    colors,
   }
 
   svg: any

@@ -1,6 +1,7 @@
 // @flow
 import React, { PureComponent } from 'react'
 import d3 from 'd3'
+import { colors } from './themes'
 
 type PropTypes = {
   bins: number,
@@ -17,18 +18,7 @@ type PropTypes = {
 export default class Histogram extends PureComponent<PropTypes> {
   static defaultProps = {
     className: 'histogram',
-    colors: [
-      '#e67e22',
-      '#32abe3',
-      '#ff984d',
-      '#73bf67',
-      '#fc5454',
-      '#b26fd4',
-      '#937443',
-      '#eb95da',
-      '#8a8989',
-      '#66cdcc',
-    ],
+    colors,
     fill: '#2980b9',
     label: 'Count',
     height: 300,
