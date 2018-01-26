@@ -38,16 +38,18 @@ body {
 }
 
 .demo-body .github {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   border: 0;
+  background: linear-gradient(45deg, transparent 0%, transparent 60%,white 60%,white 100%);
 }
 
 .demo-body .version {
-  position: absolute;
+  position: fixed;
   top: 4px;
   right: 4px;
+  font-weight: bold;
 }
 
 .demo-body .icon-btn-wrapper {

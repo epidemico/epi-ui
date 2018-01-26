@@ -137,7 +137,7 @@ const EpiUIBrowser = () => (
           data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"
         />
       </a>
-      <small className="version">{version}</small>
+      <small className="version">v{version}</small>
     </div>
   </div>
 )
