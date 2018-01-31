@@ -12,6 +12,28 @@ if (document) {
   document.title = title
 }
 
+class ModalWrapper extends React.Component<{}, { active: boolean }> {
+  state = { active: false }
+  toggle = () => {
+    this.setState(state => ({ active: !state.active }))
+  }
+  render() {
+    return (
+      <div>
+        <button type="button" onClick={this.toggle}>
+          Toggle Modal
+        </button>
+        <EpiUI.Modal
+          {...demodata.Modal}
+          active={this.state.active}
+          onSubmit={this.toggle}
+          onCancel={this.toggle}
+        />
+      </div>
+    )
+  }
+}
+
 const EpiUIBrowser = () => (
   <div>
     <div className="demo-header">
@@ -70,7 +92,7 @@ const EpiUIBrowser = () => (
               </div>
               <div className="col col-50p">
                 <h3 style={{ marginTop: '3rem' }}>Output</h3>
-                {element}
+                {key === 'Modal' ? <ModalWrapper>{element}</ModalWrapper> : element}
               </div>
             </div>
 
