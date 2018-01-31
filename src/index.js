@@ -10,12 +10,22 @@ import LineBarChartCombo from './LineBarChartCombo'
 import Spinner from './Spinner'
 import SvgIcon from './SvgIcon'
 import Table from './Table'
+import WordCloud from './WordCloud'
 
 // Export data.
 export { demodata, icons }
 
 // Export individual components.
-export { BarChart, Histogram, HorizontalBarChart, LineBarChartCombo, Spinner, SvgIcon, Table }
+export {
+  BarChart,
+  Histogram,
+  HorizontalBarChart,
+  LineBarChartCombo,
+  Spinner,
+  SvgIcon,
+  Table,
+  WordCloud,
+}
 
 // Export a default object with all modules.
 export default {
@@ -28,4 +38,5 @@ export default {
   Spinner,
   SvgIcon,
   Table,
+  WordCloud,
 }
