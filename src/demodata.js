@@ -235,6 +235,34 @@ export const WordCloud = {
   ],
 }
 
+export const ProgressIndicator = {
+  currentStep: 3,
+  totalSteps: 4,
+}
+
+export const Modal = {
+  body: {
+    title: (
+      <div>
+        Epi-UI <strong>Modal</strong>
+      </div>
+    ),
+    dom: (
+      <div>
+        <code>&lt;Modal&gt;</code> supports <strong>HTML / JSX</strong>!
+      </div>
+    ),
+  },
+  active: false,
+  showFooter: true,
+  centerContent: false,
+  onCancel: () => log('Modal cancelled!'),
+  onSubmit: () => log('Modal submitted!'),
+  onNext: currentStep => log(currentStep),
+  onPrev: currentStep => log(currentStep),
+  submitTitle: 'OK',
+}
+
 /*
 export const Topics = {
   onChange: (error: Error, results: any) => log(results),
@@ -248,7 +276,6 @@ export const ReactLoadingButton = {
   loading: true,
 }
 
-// export const Modal = { title: 'Title', body: <div><strong>Strong</strong> body!</div>, active: true, showFooter: true, centerContent: true, onCancel: () => log('Modal cancelled'), onSubmit: () => log('Modal submitted'), onNext: currentStep => log(currentStep), onPrev: currentStep => log(currentStep), }
 
 export const ContextOnHighlight = {
   children: (
