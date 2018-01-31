@@ -1,0 +1,131 @@
+@import 'variables';
+@import 'colors';
+@import 'mixins/animations';
+@import 'mixins/box-shadow';
+@import 'mixins/modal';
+
+.modal-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  bottom: 0;
+  background-color: rgba(0,0,0,.5);
+  z-index: $z-index-modal-bg;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  overflow: hidden;
+  @include box-shadow($box-shadow);
+  z-index: $z-index-modal;
+}
+
+.modal--fixed-height { @include modal(fixedHeight); }
+.modal--flex-height { @include modal(flexHeight); }
+.modal--flexible { @include modal(flexHeight); } //dupe - remove references to this class
+.modal--fullscreen { @include modal(fullScreen); }
+.modal--inlineposition { @include modal(inlinePosition); }
+
+.modal-header, .modal-footer {
+  display: flex;
+  flex-grow: 0;
+  flex-shrink: 0;
+  align-items: center;
+  height: $header-height;
+}
+
+.modal-header {
+  justify-content: space-between;
+  border-bottom: 1px solid $gray-light;
+}
+
+.modal-title {
+  flex: 1;
+  padding: 0 1.5rem;
+  font-size: 1.3rem;
+  font-weight: 200;
+  display: flex;
+  height: $header-height;
+  align-items: center;
+  .tab-bar {
+    margin-left: 2rem;
+    align-self: flex-end;
+  }
+  &.is-centered {
+    justify-content: center;
+  }
+}
+
+.modal-cancel {
+  position: relative;
+  width: $header-height;
+  height: $header-height;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  //z-index: 1;
+  border-left: 1px solid $gray-light;
+}
+
+.modal-cancel-label {
+  margin-top: .3rem;
+  font-size: .7rem;
+  text-transform: uppercase;
+}
+
+.modal-footer {
+  justify-content: center;
+  width: 100%;
+  padding: 0 1.5rem;
+  border-top: 1px solid $gray-lighter;
+  &.modal-footer--has-steps {
+    justify-content: space-between;
+  }
+}
+
+.modal-footer-prev, .modal-footer-next {
+  display: flex;
+  flex-grow: 0;
+  flex-shrink: 0;
+  width: 5rem;
+}
+
+.modal-footer-prev {
+  justify-content: flex-start;
+}
+
+.modal-footer-next {
+  justify-content: flex-end;
+}
+
+.modal-body {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  min-height: 10rem;
+  padding: 1.5rem;
+  font-size: 1rem;
+  background-color: $gray-lightest;
+  overflow: auto;
+  p {
+    margin: .8rem 0 1rem 0;
+  }
+  &.is-centered {
+    text-align: center;
+  }
+}
+
+.modal-subheading { // subheadings within modal
+  margin: 1rem 0 0 0;
+  font-size: 1.2rem;
+}
+
+// appear/disappear animations
+
+@include CSSTransitionFadeSlideAnimation(Modal, enter, 0, 1, -1rem, 0);
+@include CSSTransitionFadeSlideAnimation(Modal, exit, 1, 0, 0, -1rem);
