@@ -117,14 +117,21 @@ class Table extends React.Component<PropTypes, StateTypes> {
   }
 
   render() {
-    const { toolbar, className, draggable } = this.props
+    const props = {
+      ...this.props,
+      options: {
+        ...Table.defaultProps.options,
+        ...this.props.options,
+      },
+    }
+    const { toolbar, className, draggable } = props
     const { columnsConfig, filteredColumns } = this.state
     return (
       <div className={className}>
         {toolbar}
         <div className="table-fade table-fade--left" />
         <div className="table-fade table-fade--right" />
-        <BootstrapTable {..._.omit(this.props, 'className')}>
+        <BootstrapTable {..._.omit(props, 'className')}>
           {(filteredColumns || columnsConfig)
             .filter(row => {
               return row.active !== undefined ? row.active : true
