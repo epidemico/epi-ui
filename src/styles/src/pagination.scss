@@ -1,0 +1,78 @@
+@import 'colors';
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0;
+  padding: 0 1rem;
+  font-size: .8rem;
+  .pagination-perpage {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    .btn {
+      margin-right: .3rem;
+    }
+  }
+  .pagination-pagelist {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .page-item:first-child, .page-item:last-child {
+    .page-link {
+      border-radius: 50%;
+    }
+  }
+  .page-item.active {
+    .page-link {
+      background-color: lighten($primary-color, 10%);
+    }
+  }
+  .page-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.8rem;
+    height: 1.8rem;
+    margin: 0 .1rem;
+    padding: 0;
+    background-color: transparent;
+    border-radius: 50%;
+    border: 0;
+    color: $gray-dark;
+    text-decoration: none;
+    &:hover, &:focus {
+      text-decoration: none;
+      background-color: $gray-lighter;
+    }
+  }
+  .page-item[title="previous page"],
+  .page-item[title="first page"],
+  .page-item[title="next page"],
+  .page-item[title="last page"] {
+    .page-link {
+      &:hover, &:focus {
+        background-color: transparent;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.pagination {
+  display: flex;
+  margin: .75rem 0;
+  padding: 0;
+  list-style: none;
+}
+
+.react-bs-table-container .react-bs-table-pagination {
+  margin: 0;
+  .row {
+    margin-top: 0 !important;
+  }
+}

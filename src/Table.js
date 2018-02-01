@@ -10,6 +10,7 @@ import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table'
 import TableDraggableColumn from './TableDraggableColumn'
 
 import styles from './styles/Table.css'
+import paginationStyles from './styles/pagination.css'
 
 type PropTypes = {
   keyField: string,
@@ -46,7 +47,9 @@ class Table extends React.Component<PropTypes, StateTypes> {
     filterable: [],
     hover: true,
     keyField: '_id',
-    options: {},
+    options: {
+      hideSizePerPage: true, // hide the dropdown for sizePerPage
+    },
     pagination: true,
     perPage: 20,
     sortable: true,
