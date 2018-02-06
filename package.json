@@ -40,6 +40,7 @@
     "react": "16.x"
   },
   "devDependencies": {
+    "flow-bin": "^0.64.0",
     "node-sass-chokidar": "^0.0.3",
     "npm-run-all": "^4.1.2",
     "nwb": "0.21.x",

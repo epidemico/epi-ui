@@ -222,8 +222,8 @@ export const Modal = {
   centerContent: false,
   onCancel: () => log('Modal cancelled!'),
   onSubmit: () => log('Modal submitted!'),
-  onNext: currentStep => log(currentStep),
-  onPrev: currentStep => log(currentStep),
+  onNext: (currentStep: number) => log(currentStep),
+  onPrev: (currentStep: number) => log(currentStep),
   submitTitle: 'OK',
 }
 

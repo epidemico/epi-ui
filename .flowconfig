@@ -1,0 +1,15 @@
+[ignore]
+💩 Ignore npm packages that generate flow errors
+.*/node_modules/nwb/templates/react-component/_package.json
+.*/node_modules/nwb/templates/web-module/_package.json
+
+
+[include]
+
+[libs]
+
+[lints]
+
+[options]
+
+[strict]
