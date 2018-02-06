@@ -21,6 +21,10 @@ export default class WordCloud extends PureComponent<PropTypes> {
   }>,
 }`
 
+  static defaultProps = {
+    data: [],
+  }
+
   fontSize: Function
   layout: Function
 
