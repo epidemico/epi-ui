@@ -51,4 +51,17 @@ const SvgIcon = ({
   )
 }
 
+// Must keep this synced with PropTypes above manually:
+SvgIcon.flowTypes = `{
+  color?: string,
+  hideLabel?: boolean,
+  icon: string,
+  label?: string,
+  prependLabel?: boolean,
+  rotate?: number,
+  size?: number,
+  stacked?: boolean,
+  t?: Function,
+}`
+
 export default SvgIcon

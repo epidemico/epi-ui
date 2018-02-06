@@ -32,6 +32,26 @@ type PropTypes = {
 }
 
 export default class Modal extends React.PureComponent<PropTypes> {
+  // Must keep this synced with PropTypes above manually:
+  static flowTypes = `{
+  active: boolean,
+  body: BodyType,
+  cancelTitle: string,
+  centerContent: boolean,
+  currentStep: number,
+  fullScreen: boolean,
+  hasSteps: boolean,
+  loader: boolean,
+  onCancel: Function,
+  onNext: Function,
+  onPrev: Function,
+  onSubmit: Function,
+  showFooter: boolean,
+  showSubmit: boolean,
+  submitTitle: string,
+  totalSteps: number,
+}`
+
   static defaultProps = {
     body: {},
     hasSteps: false,

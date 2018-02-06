@@ -16,6 +16,19 @@ type PropTypes = {
 }
 
 export default class Histogram extends PureComponent<PropTypes> {
+  // Must keep this synced with PropTypes above manually:
+  static flowTypes = `{
+  bins: number,
+  className: string,
+  colors: Array<string>,
+  data: Array<number>,
+  fill: string,
+  height: number,
+  label: string,
+  margins: Object,
+  width: number,
+}`
+
   static defaultProps = {
     className: 'histogram',
     colors,

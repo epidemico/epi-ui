@@ -22,6 +22,16 @@ type StateTypes = {
 }
 
 export default class BarChart extends React.Component<PropTypes, StateTypes> {
+  // Must keep this synced with PropTypes above manually:
+  static flowTypes = `{
+  data: Array<Object>,
+  className: string,
+  colors: Array<string>,
+  margins: Object,
+  width: number,
+  height: number,
+}`
+
   static defaultProps = {
     colors,
     className: 'bar-chart',

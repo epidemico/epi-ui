@@ -16,6 +16,13 @@ const Spinner = (props: PropTypes) => (
   </div>
 )
 
+// Must keep this synced with PropTypes above manually:
+Spinner.flowTypes = `{
+  size: string,
+  showContainer: boolean,
+  color: string,
+}`
+
 Spinner.defaultProps = {
   size: 'sm',
   showContainer: false,

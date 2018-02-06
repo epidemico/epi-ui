@@ -12,6 +12,14 @@ type PropTypes = {
 }
 
 export default class HorizontalBarChart extends PureComponent<PropTypes> {
+  // Must keep this synced with PropTypes above manually:
+  static flowTypes = `{
+  data: [Object],
+  margin: Object,
+  colors: Array<string>,
+  onBarClick: Function,
+}`
+
   static defaultProps = {
     data: [],
     margin: { top: 20, right: 20, bottom: 30, left: 100 },

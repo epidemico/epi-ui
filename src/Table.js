@@ -39,6 +39,28 @@ type StateTypes = {
 }
 
 class Table extends React.Component<PropTypes, StateTypes> {
+  // Must keep this synced with PropTypes above manually:
+  static flowTypes = `{
+  keyField: string,
+  columnsConfig: Array<Object>,
+  data: Array<Object>,
+
+  className: string,
+  draggable: boolean,
+  exportCSV: boolean,
+  filterable: Array<number>,
+  filteredColumns?: Array<Object>,
+  hover: boolean,
+  onColumnDragged: Function,
+  options: Object,
+  pagination: boolean,
+  perPage: number,
+  sortable: boolean,
+  striped: boolean,
+  toggleColumns: boolean,
+  toolbar: React.Node,
+}`
+
   static defaultProps = {
     className: 'table',
     data: [],

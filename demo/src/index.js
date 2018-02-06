@@ -67,7 +67,7 @@ const EpiUIBrowser = () => (
           null,
           '  '
         )
-        const propTypes = JSON.stringify(Object.keys(component.propTypes || {}), null, '  ')
+        const flowTypes = component.flowTypes
         const sampleProps = JSON.stringify(props, null, '  ')
 
         return (
@@ -80,8 +80,8 @@ const EpiUIBrowser = () => (
                   <strong>{key}</strong>
                 </h2>
                 <div className="col col-50p">
-                  <h3>Prop Types</h3>
-                  <pre>{propTypes}</pre>
+                  <h3>Prop Flowtypes</h3>
+                  <pre>{flowTypes}</pre>
                   <h3>Default Props</h3>
                   <pre>{defaultProps}</pre>
                 </div>

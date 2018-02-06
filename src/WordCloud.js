@@ -13,6 +13,14 @@ type PropTypes = {
 }
 
 export default class WordCloud extends PureComponent<PropTypes> {
+  // Must keep this synced with PropTypes above manually:
+  static flowTypes = `{
+  data: Array<{
+    text: string,
+    size: number,
+  }>,
+}`
+
   fontSize: Function
   layout: Function
 

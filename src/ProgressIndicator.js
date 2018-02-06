@@ -25,4 +25,10 @@ const ProgressIndicator = (props: PropTypes) => {
   )
 }
 
+// Must keep this synced with PropTypes above manually:
+ProgressIndicator.flowTypes = `{
+  currentStep: number,
+  totalSteps: number,
+}`
+
 export default ProgressIndicator

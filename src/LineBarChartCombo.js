@@ -36,6 +36,25 @@ type StateTypes = {
 }
 
 export default class LineBarChartCombo extends React.Component<PropTypes, StateTypes> {
+  // Must keep this synced with PropTypes above manually:
+  static flowTypes = `{
+  changePerspective?: Function,
+  context?: Object,
+  data: Array<Object>,
+  height: string,
+  initialChart: string,
+  lineBarComboActive?: boolean,
+  name?: string,
+  onBrush?: Function,
+  perspective?: Object,
+  perspectiveBtns?: boolean,
+  positiveNegativeCounts?: Array<Object>,
+  showBrush: boolean,
+  subPerspective?: Object,
+  width: string,
+  yaxis?: number,
+}`
+
   static defaultProps = {
     initialChart: 'Line Chart',
     height: '500px',
