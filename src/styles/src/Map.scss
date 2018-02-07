@@ -1,0 +1,182 @@
+@import 'variables';
+@import 'mixins/animations';
+@import 'mixins/box-shadow';
+
+.ol-overlay-container {
+  @include box-shadow($box-shadow);
+}
+.ol-overlay-container, .ol-popup, #popup-content {
+  border-radius: .3rem;
+}
+
+.ol-zoom {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  width: 0px;
+  height: 0px;
+}
+
+.ol-attribution {
+  margin-right: 1rem;
+  font-size: .8rem;
+  li {
+    display: inline-block;
+    margin-left: .5rem;
+  }
+}
+
+.ol-hidden, .ol-collapsed {
+  display: none;
+}
+
+
+.atlas {
+  .ol-zoom {
+    left: .5rem;
+  }
+  .map {
+    top: $app-nav-height;
+    left: 0;
+  }
+  .map-tool-bar {
+    top: $app-nav-height;
+    left: 0;
+  }
+  .layers-widget {
+    left: 0;
+    top: $app-nav-height + $map-tool-bar-height;
+  }
+  .has-active-arrow {
+    &:after {
+      margin-top: 1px;
+    }
+  }
+}
+
+.map-tool-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: $app-nav-height + $header-height;
+  left: $toolbar-width;
+  right: 0;
+  height: $map-tool-bar-height;
+  padding: .5rem $grid-block-size .5rem 3rem;
+  font-size: .8rem;
+  background-color: rgba(246,246,246,.85);
+  z-index: 1;
+  @include transition();
+}
+
+.map-tools-left, .map-tools-right {
+  display: flex;
+  label {
+    text-transform: uppercase;
+  }
+}
+
+.map-tools-left {
+  > div {
+    margin-right: .3rem;
+  }
+}
+
+.map-tools-right button {
+  margin-left: .3rem;
+}
+
+.gaia-form {
+  flex: 1;
+  display: none;
+  align-items: center;
+  margin-left: .5rem;
+  padding-left: .5rem;
+  border-left: 1px solid $gray-light;
+  &.is-active {
+    display: flex;
+  }
+}
+
+.has-active-arrow {
+  &:after {
+    position: absolute;
+    top: 100%;
+  	left: 50%;
+  	content: " ";
+    width: 0;
+    height: 0;
+    margin-top: 10px;
+  	margin-left: -10px;
+    border-style: solid;
+    border-width: 0 10px 10px 10px;
+    border-color: transparent transparent $primary-color transparent;
+  	pointer-events: none;
+  }
+}
+
+.map-table-view-wrapper {
+  position: fixed;
+  left: $toolbar-width;
+  right: 0;
+  bottom: 0;
+  height: 0;
+  padding: 0;
+  z-index: 1;
+  background-color: #fff;
+  overflow: hidden;
+  @include box-shadow($box-shadow-top);
+  @include transition();
+  &.is-active {
+    height: 25rem;
+    padding: .5rem 1.5rem;
+    overflow: auto;
+  }
+}
+
+.map-table-view-toggle {
+  position: absolute;
+  top: 1.2rem;
+  right: 1rem;
+  cursor: pointer;
+  @include transition();
+  &:hover {
+    transform: rotate(-90deg);
+  }
+}
+
+.geocoded-info {
+  padding: 8px;
+}
+
+.clear_btn {
+  margin-left: 5px;
+}
+
+.geocoder {
+  position: relative;
+  .geocoder { // this is the geocoder INSIDE the modal for adding locations
+    display: flex;
+    justify-content: center;
+    z-index: 1;
+    .geocoder-search {
+      width: 100%;
+      max-width: 60rem;
+    }
+    .keys-list {
+      max-width: 60rem;
+    }
+  }
+}
+
+.keys-list .btn-list--buttonbar {
+  display: flex;
+  justify-content: center;
+  margin: .3rem 0;
+}
+
+.find-on-map {
+  display: flex;
+  justify-content: center;
+}

@@ -7,6 +7,7 @@ import BarChart from './BarChart'
 import Histogram from './Histogram'
 import HorizontalBarChart from './HorizontalBarChart'
 import LineBarChartCombo from './LineBarChartCombo'
+import Map from './Map'
 import Modal from './Modal'
 import ProgressIndicator from './ProgressIndicator'
 import Spinner from './Spinner'
@@ -23,6 +24,7 @@ export {
   Histogram,
   HorizontalBarChart,
   LineBarChartCombo,
+  Map,
   Modal,
   ProgressIndicator,
   Spinner,
@@ -39,6 +41,7 @@ export default {
   Histogram,
   HorizontalBarChart,
   LineBarChartCombo,
+  Map,
   Modal,
   ProgressIndicator,
   Spinner,

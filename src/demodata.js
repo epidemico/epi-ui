@@ -82,6 +82,31 @@ export const LineBarChartCombo = {
   onBrush: log,
 }
 
+export const Map = {
+  geojson: {
+    id: 1,
+    data: {
+      type: 'FeatureCollection',
+      crs: { type: 'name', properties: { name: 'EPSG:3857' } },
+      features: [
+        { type: 'Feature', geometry: { type: 'Point', coordinates: [0, 0] } },
+        {
+          type: 'Feature',
+          geometry: {
+            type: 'MultiLineString',
+            coordinates: [
+              [[-1e6, -7.5e5], [-1e6, 7.5e5]],
+              [[1e6, -7.5e5], [1e6, 7.5e5]],
+              [[-7.5e5, -1e6], [7.5e5, -1e6]],
+              [[-7.5e5, 1e6], [7.5e5, 1e6]],
+            ],
+          },
+        },
+      ],
+    },
+  },
+}
+
 export const Spinner = {
   size: 'lg',
 }
@@ -784,7 +809,6 @@ export const ExplodeChart = {
   ],
 }
 
-// export const Map = { geojson: { id: 1, data: { type: 'FeatureCollection', crs: { type: 'name', properties: { name: 'EPSG:3857', }, }, features: [ { type: 'Feature', geometry: { type: 'Point', coordinates: [0, 0], }, }, { type: 'Feature', geometry: { type: 'MultiLineString', coordinates: [ [[-1e6, -7.5e5], [-1e6, 7.5e5]], [[1e6, -7.5e5], [1e6, 7.5e5]], [[-7.5e5, -1e6], [7.5e5, -1e6]], [[-7.5e5, 1e6], [7.5e5, 1e6]], ], }, }, ], }, }, }
 
 export const DonutChart = {
   data: {
