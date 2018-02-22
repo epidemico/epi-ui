@@ -7,10 +7,12 @@ import { DragDropContext } from 'react-dnd'
 import HTML5Backend from 'react-dnd-html5-backend'
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table'
 
+import SvgIcon from './SvgIcon'
 import TableDraggableColumn from './TableDraggableColumn'
 
 import styles from './styles/Table.css'
 import paginationStyles from './styles/pagination.css'
+import svgiconStyles from './styles/svg-icon.css'
 
 type PropTypes = {
   keyField: string,
@@ -30,7 +32,7 @@ type PropTypes = {
   sortable: boolean,
   striped: boolean,
   toggleColumns: boolean,
-  toolbar: React.Node,
+  toolbar: boolean,
 }
 
 type StateTypes = {
@@ -58,7 +60,7 @@ class Table extends React.Component<PropTypes, StateTypes> {
   sortable: boolean,
   striped: boolean,
   toggleColumns: boolean,
-  toolbar: React.Node,
+  toolbar: boolean,
 }`
 
   static defaultProps = {
@@ -76,7 +78,8 @@ class Table extends React.Component<PropTypes, StateTypes> {
     perPage: 20,
     sortable: true,
     striped: true,
-    toolbar: null,
+    toggleColumns: true,
+    toolbar: true,
   }
 
   constructor(props) {
@@ -138,6 +141,22 @@ class Table extends React.Component<PropTypes, StateTypes> {
     )
   }
 
+  toggleColumnVisibility(key) {
+    const { filteredColumns, columnsConfig } = this.state
+    var updateFilteredColumns = (filteredColumns || columnsConfig).map(row => {
+      const obj = Object.assign({}, row)
+      if (obj.key === key) {
+        obj.active = !obj.active
+      }
+      return obj
+    })
+    this.setState(
+      () => ({
+        filteredColumns: updateFilteredColumns
+      })
+    )
+  }
+
   render() {
     const props = {
       ...this.props,
@@ -146,11 +165,60 @@ class Table extends React.Component<PropTypes, StateTypes> {
         ...this.props.options,
       },
     }
-    const { toolbar, className, draggable } = props
+    const { toolbar, toggleColumns, className, draggable } = props
     const { columnsConfig, filteredColumns } = this.state
     return (
-      <div className={className}>
-        {toolbar}
+      <div className="table-wrapper">
+        {toolbar &&
+          <div className="react-bs-custom-toolbar">
+            <ul className="btn-list btn-list--inline">
+              {toggleColumns && (
+                <li>
+                  <div className="hover-menu-wrapper">
+                    <button className="btn btn-primary">
+                      <SvgIcon
+                        icon="Caret"
+                        rotate={90}
+                        size={0.5}
+                        label='Show/Hide Columns'
+                        prependLabel
+                      />
+                    </button>
+                    <ul className="hover-menu hover-menu-condensed columns-controls">
+                      {(filteredColumns || columnsConfig)
+                        .filter(row => {
+                          return row.toggleable
+                        })
+                        .map(column => {
+                          const label =
+                            typeof column.label === 'string'
+                              ? column.label
+                              : column.displayAs || column.label
+                          return (
+                            <li key={column.key}>
+                              <label>
+                                <input
+                                  type="checkbox"
+                                  name="column-toggle"
+                                  checked={column.active}
+                                  onChange={() => this.toggleColumnVisibility(column.key)}
+                                />{' '}
+                                {label}
+                              </label>
+                            </li>
+                          )
+                        })}
+                    </ul>
+                  </div>
+                </li>
+              )}
+              {/* <li> {props.components.exportCSVBtn}</li> */}
+            </ul>
+            {/* {props.components.searchField && (
+              <div className="form-field">{props.components.searchField}</div>
+            )} */}
+          </div>
+        }
         <div className="table-fade table-fade--left" />
         <div className="table-fade table-fade--right" />
         <BootstrapTable {..._.omit(props, 'className')}>

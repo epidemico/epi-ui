@@ -140,16 +140,22 @@ export const Table = {
     {
       key: 'name',
       label: 'Name',
+      toggleable: true, // Column visibility can be toggled on/off
+      active: true, // Column is initially visible
     },
     {
       key: 'age',
       label: 'Age',
+      toggleable: true, // Column visibility can be toggled on/off
+      active: true, // Column is initially visible
       // Click handler for the cell
       onClick: (e: any) => log(`Clicked on age ${e.currentTarget.innerHTML}`),
     },
     {
       key: 'quote',
       label: 'Quote',
+      toggleable: true, // Column visibility can be toggled on/off
+      active: true, // Column is initially visible
       unsafe: true,
     },
   ],
