@@ -1,0 +1,47 @@
+@import './mixins/_animations';
+
+.svg-icon {
+  display: inline-block;
+}
+
+.icon-label-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.stacked {
+    flex-direction: column;
+    label {
+      margin-top: .3rem;
+    }
+  }
+
+  path {
+    @include transition();
+  }
+
+  label + svg {
+    margin-left: .3rem;
+  }
+
+  svg + label {
+    margin-left: .3rem;
+  }
+
+  svg {
+    &.rotate-90{
+      transform: rotate(-90deg);
+    }
+    &.rotate90{
+      transform: rotate(90deg);
+    }
+    &.rotate180{
+      transform: rotate(180deg);
+    }
+  }
+
+}
+
+.svg-icon + .svg-icon {
+  margin-left: .3rem;
+}
