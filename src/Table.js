@@ -151,11 +151,9 @@ class Table extends React.Component<PropTypes, StateTypes> {
       }
       return obj
     })
-    this.setState(
-      () => ({
-        filteredColumns: updateFilteredColumns
-      })
-    )
+    this.setState(() => ({
+      filteredColumns: updateFilteredColumns,
+    }))
   }
 
   createCustomToolBar = props => {
@@ -163,7 +161,7 @@ class Table extends React.Component<PropTypes, StateTypes> {
     return (
       <div className="react-bs-custom-toolbar">
         <ul className="btn-list btn-list--inline">
-          { toggleColumns &&
+          {toggleColumns && (
             <li>
               <div className="hover-menu-wrapper">
                 <button className="btn btn-primary">
@@ -171,7 +169,7 @@ class Table extends React.Component<PropTypes, StateTypes> {
                     icon="Caret"
                     rotate={90}
                     size={0.5}
-                    label='Show/Hide Columns'
+                    label="Show/Hide Columns"
                     prependLabel
                   />
                 </button>
@@ -181,7 +179,6 @@ class Table extends React.Component<PropTypes, StateTypes> {
                       return row.toggleable
                     })
                     .map(column => {
-                      console.log(column)
                       const label =
                         typeof column.label === 'string'
                           ? column.label
@@ -203,16 +200,12 @@ class Table extends React.Component<PropTypes, StateTypes> {
                 </ul>
               </div>
             </li>
-          }
-          {exportCSV &&
-            <li>{props.components.exportCSVBtn}</li>
-          }
+          )}
+          {exportCSV && <li>{props.components.exportCSVBtn}</li>}
         </ul>
-        {search &&
-          <div className="form-field">{props.components.searchField}</div>
-        }
+        {search && <div className="form-field">{props.components.searchField}</div>}
       </div>
-    );
+    )
   }
 
   render() {
