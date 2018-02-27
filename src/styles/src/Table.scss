@@ -67,48 +67,7 @@ table, .table {
   position: relative;
 }
 
-// .table-fade {
-//   position: absolute;
-//   top: 3.5rem;
-//   right: 0;
-//   bottom: 0;
-//   width: 12rem;
-//   background: -moz-linear-gradient(right,  rgba(255,255,255,0) 0%, rgba(246,246,246,1) 100%);
-//   background: -webkit-linear-gradient(right,  rgba(255,255,255,0) 0%,rgba(246,246,246,1) 100%);
-//   background: linear-gradient(to right,  rgba(255,255,255,0) 0%,rgba(246,246,246,1) 100%);
-//   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#f0f0f0',GradientType=0 );
-//   z-index: 199;
-// }
-
-.table--has-fade {
-  .table-fade {
-    display: block;
-  }
-}
-
-.table-fade {
-  display: none;
-  position: absolute;
-  //top: 3.2rem;
-  top: $grid-block-size;
-  bottom: 0;
-  background-color: $gray-lightest;
-  z-index: 1;
-  &.table-fade--left {
-    width: $grid-block-size;
-    left: -$grid-block-size;
-    @include box-shadow($table-shadow-right);
-  }
-  &.table-fade--right {
-    width: $toolbar-content-buffer;
-    right: -$toolbar-content-buffer;
-    @include box-shadow($table-shadow-left);
-  }
-}
-
-
 /* START: For table children indentations */
-
 
 tr.added {
   color: red;
@@ -140,7 +99,7 @@ span.expand-btn {
 }
 
 th, td {
-  position: relative;
+  //position: relative; // commented out so that the spanify tooltip doesn't get cut off if wider than the table cell
   &:focus {
     outline: none; // remove blue glow when cell clicked in Chrome
   }
