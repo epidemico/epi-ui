@@ -176,11 +176,12 @@ class Table extends React.Component<PropTypes, StateTypes> {
                   />
                 </button>
                 <ul className="hover-menu hover-menu-condensed columns-controls">
-                  {(filteredColumns || columnsConfig)
+                  {(this.state.filteredColumns || this.state.columnsConfig)
                     .filter(row => {
                       return row.toggleable
                     })
                     .map(column => {
+                      console.log(column)
                       const label =
                         typeof column.label === 'string'
                           ? column.label
@@ -227,8 +228,6 @@ class Table extends React.Component<PropTypes, StateTypes> {
     const { columnsConfig, filteredColumns } = this.state
     return (
       <div className="table-wrapper">
-        <div className="table-fade table-fade--left" />
-        <div className="table-fade table-fade--right" />
         <BootstrapTable {..._.omit(props, 'className')}>
           {(filteredColumns || columnsConfig)
             .filter(row => {
