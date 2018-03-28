@@ -18,6 +18,7 @@ type PropTypes = {
   cancelTitle: string,
   centerContent: boolean,
   currentStep: number,
+  doneText: string,
   fullScreen: boolean,
   hasSteps: boolean,
   loader: boolean,
@@ -39,6 +40,7 @@ export default class Modal extends React.PureComponent<PropTypes> {
   cancelTitle: string,
   centerContent: boolean,
   currentStep: number,
+  doneText: string,
   fullScreen: boolean,
   hasSteps: boolean,
   loader: boolean,
@@ -53,42 +55,44 @@ export default class Modal extends React.PureComponent<PropTypes> {
 }`
 
   static defaultProps = {
-    body: {},
-    hasSteps: false,
     active: false,
+    body: {},
+    cancelTitle: `Cancel`,
+    centerContent: false,
     currentStep: 1,
-    totalSteps: 1,
+    doneText: "I'm done!",
+    fullScreen: false,
+    hasSteps: false,
+    loader: false,
+    onCancel: () => {},
     onNext: () => {},
     onPrev: () => {},
-    onCancel: () => {},
     onSubmit: () => {},
-    centerContent: false,
-    fullScreen: false,
     showFooter: true,
     showSubmit: true,
     submitTitle: `Submit`,
-    cancelTitle: `Cancel`,
-    loader: false,
+    totalSteps: 1,
   }
 
   render() {
     const {
+      active,
       body,
+      cancelTitle,
+      centerContent,
+      currentStep,
+      doneText,
+      fullScreen,
       hasSteps,
+      loader,
+      onCancel,
       onNext,
       onPrev,
-      onCancel,
       onSubmit,
-      active,
-      currentStep,
-      totalSteps,
-      centerContent,
-      fullScreen,
       showFooter,
       showSubmit,
       submitTitle,
-      cancelTitle,
-      loader,
+      totalSteps,
     } = this.props
 
     let modalContent = ''
@@ -99,9 +103,7 @@ export default class Modal extends React.PureComponent<PropTypes> {
           <div className="modal-background" onClick={onCancel} />
           <div className={`modal ${fullScreen ? 'modal--fullscreen' : 'modal--fixed-height'}`}>
             <div className="modal-header">
-              <div className={`modal-title ${centerContent ? 'is-centered' : ''}`}>
-                {body.title}
-              </div>
+              <div className={`modal-title ${centerContent ? 'is-centered' : ''}`}>{body.title}</div>
               <div onClick={onCancel} className="modal-cancel">
                 <SvgIcon icon="Close" hideLabel />
                 <span className="modal-cancel-label">Cancel</span>
@@ -137,7 +139,7 @@ export default class Modal extends React.PureComponent<PropTypes> {
                   ) : (
                     <div className="modal-footer-prev" />
                   )}
-                  <ProgressIndicator currentStep={currentStep} totalSteps={totalSteps} />
+                  {totalSteps > 1 && <ProgressIndicator currentStep={currentStep} totalSteps={totalSteps} />}
                   {currentStep < totalSteps && (
                     <div className="modal-footer-next">
                       <button className="btn btn-secondary" onClick={() => onNext(currentStep + 1)}>
@@ -148,7 +150,7 @@ export default class Modal extends React.PureComponent<PropTypes> {
                   {currentStep === totalSteps && (
                     <div className="modal-footer-next">
                       <button className="btn btn-secondary" onClick={onSubmit}>
-                        {loader ? <Spinner size="sm" /> : "I'm done!"}
+                        {loader ? <Spinner size="sm" /> : totalSteps > 1 ? doneText : 'OK'}
                       </button>
                     </div>
                   )}
