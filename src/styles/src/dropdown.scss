@@ -71,7 +71,7 @@ $hover-menu-wrapper-height: 4rem;
       text-transform: none;
       cursor: default;
       //width: 5rem;
-      &:not('.list-item--nohover') {
+      &:not(.list-item--nohover) {
         cursor: pointer;
         &.is-active {
           color: $primary-color-brighter;
