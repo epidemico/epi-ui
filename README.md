@@ -6,8 +6,8 @@ See a [live demo of all components](https://epi-ui.surge.sh) or see them used in
 
 ## Getting Started
 
-    yarn install
-    yarn start
+    npm install
+    npm start
 
 ## Contributing
 
