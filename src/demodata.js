@@ -58,13 +58,13 @@ export const LineBarChartCombo = {
   verticalLineData: [
     {
       date: +new Date('2018-03-04T00:00:00'),
-      label: 'March 4th is my birthday!',
+      label: 'This will be a red-letter day',
       color: 'red',
       textColor: 'red',
     },
     {
       date: +new Date('2018-03-06T00:00:00'),
-      label: "March 6th is my mom's birthday!",
+      label: 'A not-so-important event',
       color: 'blue',
       textColor: 'blue',
     },

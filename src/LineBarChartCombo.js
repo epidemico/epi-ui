@@ -341,6 +341,7 @@ export default class LineBarChartCombo extends React.Component<PropTypes, StateT
     var verticalLines = d3
       .select(path)
       .select('.vertical-lines')
+      .style('direction', 'rtl')
       .selectAll('.vertical-line')
       .data(verticalLineData)
 
@@ -366,8 +367,8 @@ export default class LineBarChartCombo extends React.Component<PropTypes, StateT
       verticalLines
         .selectAll('text')
         .text(d => d.label)
-        .attr('dy', '-6px')
-        .attr('transform', d => 'translate(' + chart.xAxis.scale()(d.date) + ',' + chart.yAxis.scale()(2) + ') rotate(-90)')
+        .attr('dy', '-5px')
+        .attr('transform', d => 'translate(' + chart.xAxis.scale()(d.date) + ',' + chart.yAxis.scale().range()[1] + ') rotate(-90)')
         .style('font-size', '90%')
         .style('fill', d => d.textColor || '#555')
     }
