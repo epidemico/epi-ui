@@ -25,6 +25,7 @@ type PropTypes = {
   useInteractiveGuideline: boolean,
   width: string,
   verticalLineData?: Array<{ date: number, label: string }>,
+  verticalTextDirection: 'rtl' | 'ltr',
   yaxis?: number,
 }
 
@@ -56,6 +57,7 @@ export default class LineBarChartCombo extends React.Component<PropTypes, StateT
   useInteractiveGuideline: boolean,
   width: string,
   verticalLineData?:Array<{date: number, label: string}>,
+  verticalTextDirection: 'rtl' | 'ltr',
   yaxis?: number,
 }`
 
@@ -64,6 +66,7 @@ export default class LineBarChartCombo extends React.Component<PropTypes, StateT
     height: '500px',
     width: '100%',
     showBrush: true,
+    verticalTextDirection: 'rtl',
   }
 
   name: string
@@ -338,14 +341,17 @@ export default class LineBarChartCombo extends React.Component<PropTypes, StateT
         .attr('class', 'vertical-lines')
     }
 
-    var verticalLines = d3
+    const { verticalTextDirection: direction } = this.props
+    const yTranslate = direction === 'rtl' ? chart.yAxis.scale().range()[1] : chart.yAxis.scale()(2)
+
+    const verticalLines = d3
       .select(path)
       .select('.vertical-lines')
-      .style('direction', 'rtl')
+      .style('direction', direction)
       .selectAll('.vertical-line')
       .data(verticalLineData)
 
-    var group = verticalLines
+    const group = verticalLines
       .enter()
       .append('g')
       .attr('class', 'vertical-line')
@@ -368,7 +374,7 @@ export default class LineBarChartCombo extends React.Component<PropTypes, StateT
         .selectAll('text')
         .text(d => d.label)
         .attr('dy', '-5px')
-        .attr('transform', d => 'translate(' + chart.xAxis.scale()(d.date) + ',' + chart.yAxis.scale().range()[1] + ') rotate(-90)')
+        .attr('transform', d => 'translate(' + chart.xAxis.scale()(d.date) + ',' + yTranslate + ') rotate(-90)')
         .style('font-size', '90%')
         .style('fill', d => d.textColor || '#555')
     }

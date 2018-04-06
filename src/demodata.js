@@ -69,6 +69,7 @@ export const LineBarChartCombo = {
       textColor: 'blue',
     },
   ],
+  verticalTextDirection: 'ltr',
   onBrush: log,
 }
 
