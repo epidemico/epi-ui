@@ -45,14 +45,24 @@ export const LineBarChartCombo = {
     {
       key: 'volume',
       values: [
-        { y: 6, x: +new Date('2018-03-01') },
-        { y: 14, x: +new Date('2018-03-02') },
-        { y: 18, x: +new Date('2018-03-03') },
-        { y: 17, x: +new Date('2018-03-04') },
-        { y: 19, x: +new Date('2018-03-05') },
-        { y: 15, x: +new Date('2018-03-06') },
-        { y: 18, x: +new Date('2018-03-07') },
+        { y: 6, x: +new Date('2018-03-01T00:00:00') },
+        { y: 14, x: +new Date('2018-03-02T00:00:00') },
+        { y: 18, x: +new Date('2018-03-03T00:00:00') },
+        { y: 17, x: +new Date('2018-03-04T00:00:00') },
+        { y: 19, x: +new Date('2018-03-05T00:00:00') },
+        { y: 15, x: +new Date('2018-03-06T00:00:00') },
+        { y: 18, x: +new Date('2018-03-07T00:00:00') },
       ],
+    },
+  ],
+  verticalLineData: [
+    {
+      date: +new Date('2018-03-04T00:00:00'),
+      label: 'March 4th is my birthday!',
+    },
+    {
+      date: +new Date('2018-03-06T00:00:00'),
+      label: "March 6th is my mom's birthday!",
     },
   ],
   onBrush: log,
