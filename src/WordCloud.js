@@ -95,9 +95,7 @@ export default class WordCloud extends PureComponent<PropTypes> {
           return d.text
         })
       text.exit().remove()
-      vis
-        .transition()
-        .attr('transform', 'translate(' + [w >> 1, h >> 1].toString() + ')scale(' + scale + ')')
+      vis.transition().attr('transform', 'translate(' + [w >> 1, h >> 1].toString() + ')scale(' + scale + ')')
     }
     this.renderVisuals()
   }

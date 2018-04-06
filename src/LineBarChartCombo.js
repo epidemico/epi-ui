@@ -75,16 +75,12 @@ export default class LineBarChartCombo extends React.Component<PropTypes, StateT
         .toString(16)
         .substr(2)}`
 
-    this.defaultChart = nvd3.models[props.showBrush ? 'lineWithFocusChart' : 'lineChart'](
-      extent => {
-        props.onBrush && props.onBrush(extent)
-      }
-    ).color(colors)
-    this.defaultSmoothChart = nvd3.models[props.showBrush ? 'lineWithFocusChart' : 'lineChart'](
-      extent => {
-        props.onBrush && props.onBrush(extent)
-      }
-    )
+    this.defaultChart = nvd3.models[props.showBrush ? 'lineWithFocusChart' : 'lineChart'](extent => {
+      props.onBrush && props.onBrush(extent)
+    }).color(colors)
+    this.defaultSmoothChart = nvd3.models[props.showBrush ? 'lineWithFocusChart' : 'lineChart'](extent => {
+      props.onBrush && props.onBrush(extent)
+    })
       .color(colors)
       .interpolate('basis')
     this.state = {
@@ -163,9 +159,7 @@ export default class LineBarChartCombo extends React.Component<PropTypes, StateT
     })
   }
   shouldComponentUpdate(nextProps: PropTypes, nextState: StateTypes) {
-    return (
-      nextState.data !== this.state.data || this.state.activeChartName !== nextState.activeChartName
-    )
+    return nextState.data !== this.state.data || this.state.activeChartName !== nextState.activeChartName
   }
   componentDidUpdate() {
     // Update the axises with the right label
@@ -177,11 +171,7 @@ export default class LineBarChartCombo extends React.Component<PropTypes, StateT
       .axisLabel(this._getCurrentActivePerspective('perspective'))
       .axisLabelDistance(-10)
     if (this.state.currentChart.yAxis2) this.state.currentChart.yAxis2.axisLabel('% of records')
-    if (
-      !this.state.yaxis &&
-      this.state.currentChart.yDomain &&
-      this.state.activeChartName !== 'Line Bar Combo'
-    ) {
+    if (!this.state.yaxis && this.state.currentChart.yDomain && this.state.activeChartName !== 'Line Bar Combo') {
       this.state.currentChart.yDomain([0, this._getMaxValue(JSON.parse(this.state.data))]) // Always start the y-axis with zoro
     } else if (this.state.currentChart.yDomain && this.state.activeChartName !== 'Line Bar Combo') {
       this.state.currentChart.yDomain([-1, 1]) // Sentiment values are always between -1 and 1
@@ -195,8 +185,7 @@ export default class LineBarChartCombo extends React.Component<PropTypes, StateT
   }
   _registerLegendToggle(chart: Object) {
     chart.legend.dispatch.legendClick = d => {
-      var disabledValue =
-        this.toggledLegends[d.key] === undefined ? false : !this.toggledLegends[d.key]
+      var disabledValue = this.toggledLegends[d.key] === undefined ? false : !this.toggledLegends[d.key]
       if (this.toggledLegends[d.key] !== disabledValue) this.toggledLegends[d.key] = disabledValue
       if (this.state.currentChart.yDomain) {
         this.state.currentChart.yDomain([0, this._getMaxValue(JSON.parse(this.state.data))])
@@ -204,17 +193,11 @@ export default class LineBarChartCombo extends React.Component<PropTypes, StateT
     }
   }
   _getMaxValue(data: Array<Object>) {
-    return d3.max(
-      _.filter(
-        data,
-        d => (this.toggledLegends[d.key] === undefined ? true : this.toggledLegends[d.key])
-      ),
-      d => {
-        return d3.max(d.values, value => {
-          return value.y
-        })
-      }
-    )
+    return d3.max(_.filter(data, d => (this.toggledLegends[d.key] === undefined ? true : this.toggledLegends[d.key])), d => {
+      return d3.max(d.values, value => {
+        return value.y
+      })
+    })
   }
   _changeChart = (e: SyntheticEvent<HTMLSelectElement> | Object) => {
     const selectedChart = e.currentTarget.value
@@ -361,11 +344,7 @@ export default class LineBarChartCombo extends React.Component<PropTypes, StateT
       <div>
         <div className="chart-display-options">
           <label>View as:</label>
-          <select
-            className="select--condensed"
-            value={this.state.activeChartName}
-            onChange={this._changeChart}
-          >
+          <select className="select--condensed" value={this.state.activeChartName} onChange={this._changeChart}>
             {_.chain(this.state.chart)
               .keys()
               .map(chart => {
@@ -407,11 +386,7 @@ export default class LineBarChartCombo extends React.Component<PropTypes, StateT
           .map(chart => {
             return (
               this.state.activeChartName === chart && (
-                <div
-                  key={chart}
-                  className="chart-wrapper"
-                  id={`${this.name}-${chart.toLowerCase().replace(/ /g, '-')}`}
-                >
+                <div key={chart} className="chart-wrapper" id={`${this.name}-${chart.toLowerCase().replace(/ /g, '-')}`}>
                   <svg height={height} width={width} style={{ height: height }} />
                 </div>
               )

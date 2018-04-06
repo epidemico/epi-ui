@@ -43,16 +43,7 @@ export default class Map extends Component<PropTypes, StateTypes> {
   state = {}
 
   componentDidMount() {
-    const {
-      center,
-      zoom,
-      className,
-      mapInstance,
-      mapViewInstance,
-      mapOverlay,
-      mouseWheelZoom,
-      onAddMarker,
-    } = this.props
+    const { center, zoom, className, mapInstance, mapViewInstance, mapOverlay, mouseWheelZoom, onAddMarker } = this.props
 
     let popupsDOM = {
       container: document.getElementById('popup'),

@@ -106,16 +106,9 @@ export default class BarChart extends React.Component<PropTypes, StateTypes> {
       .attr('width', this.statics.outerWidth)
       .attr('height', this.statics.outerHeight)
 
-    this.svg = d3
-      .select('.' + className + '-group')
-      .attr(
-        'transform',
-        'translate(' + this.statics.margin.left + ',' + this.statics.margin.top + ')'
-      )
+    this.svg = d3.select('.' + className + '-group').attr('transform', 'translate(' + this.statics.margin.left + ',' + this.statics.margin.top + ')')
 
-    this.svg
-      .select('.x.axis')
-      .attr('transform', 'translate(' + 0 + ',' + this.statics.dimensions.height + ')')
+    this.svg.select('.x.axis').attr('transform', 'translate(' + 0 + ',' + this.statics.dimensions.height + ')')
 
     this.svg.select('.y.axis').attr('transform', 'translate(' + 0 + ',' + 0 + ')')
 
@@ -268,9 +261,7 @@ export default class BarChart extends React.Component<PropTypes, StateTypes> {
         return this.statics.scales.y(d[this.state.keys.value])
       })
       .attr('x', d => {
-        return (
-          this.statics.scales.x(d[this.state.keys.label]) + this.statics.scales.x.rangeBand() / 2
-        )
+        return this.statics.scales.x(d[this.state.keys.label]) + this.statics.scales.x.rangeBand() / 2
       })
       .text(d => {
         return this._formatNumber(d[this.state.keys.value])
@@ -285,9 +276,7 @@ export default class BarChart extends React.Component<PropTypes, StateTypes> {
         return this.statics.scales.y(d[this.state.keys.value])
       })
       .attr('x', d => {
-        return (
-          this.statics.scales.x(d[this.state.keys.label]) + this.statics.scales.x.rangeBand() / 2
-        )
+        return this.statics.scales.x(d[this.state.keys.label]) + this.statics.scales.x.rangeBand() / 2
       })
       .text(d => {
         return this._formatNumber(d[this.state.keys.value])

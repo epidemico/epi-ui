@@ -136,8 +136,7 @@ class Table extends React.Component<PropTypes, StateTypes> {
         filteredColumns: reorderFilteredColumns,
       }),
       () => {
-        if (this.props.onColumnDragged)
-          this.props.onColumnDragged({ dragColumn, filteredColumns: reorderFilteredColumns })
+        if (this.props.onColumnDragged) this.props.onColumnDragged({ dragColumn, filteredColumns: reorderFilteredColumns })
       }
     )
   }
@@ -165,13 +164,7 @@ class Table extends React.Component<PropTypes, StateTypes> {
             <li>
               <div className="hover-menu-wrapper">
                 <button className="btn btn-primary">
-                  <SvgIcon
-                    icon="Caret"
-                    rotate={90}
-                    size={0.5}
-                    label="Show/Hide Columns"
-                    prependLabel
-                  />
+                  <SvgIcon icon="Caret" rotate={90} size={0.5} label="Show/Hide Columns" prependLabel />
                 </button>
                 <ul className="hover-menu hover-menu-condensed columns-controls">
                   {(this.state.filteredColumns || this.state.columnsConfig)
@@ -179,10 +172,7 @@ class Table extends React.Component<PropTypes, StateTypes> {
                       return row.toggleable
                     })
                     .map(column => {
-                      const label =
-                        typeof column.label === 'string'
-                          ? column.label
-                          : column.displayAs || column.label
+                      const label = typeof column.label === 'string' ? column.label : column.displayAs || column.label
                       return (
                         <li key={column.key}>
                           <label>

@@ -44,6 +44,4 @@ const columnTarget = {
   },
 }
 
-export default DropTarget('column', columnTarget, collectDropTarget)(
-  DragSource('column', columnSource, collectDragSource)(TableDraggableColumn)
-)
+export default DropTarget('column', columnTarget, collectDropTarget)(DragSource('column', columnSource, collectDragSource)(TableDraggableColumn))

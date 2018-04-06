@@ -81,19 +81,10 @@ export default class Histogram extends PureComponent<PropTypes> {
 
     this.svg = d3
       .select(`.${className}`)
-      .attr(
-        'width',
-        this.statics.dimensions.width + this.statics.margin.left + this.statics.margin.right
-      )
-      .attr(
-        'height',
-        this.statics.dimensions.height + this.statics.margin.top + this.statics.margin.bottom
-      )
+      .attr('width', this.statics.dimensions.width + this.statics.margin.left + this.statics.margin.right)
+      .attr('height', this.statics.dimensions.height + this.statics.margin.top + this.statics.margin.bottom)
       .append('g')
-      .attr(
-        'transform',
-        'translate(' + this.statics.margin.left + ',' + this.statics.margin.top + ')'
-      )
+      .attr('transform', 'translate(' + this.statics.margin.left + ',' + this.statics.margin.top + ')')
 
     this.svg
       .append('g')
@@ -130,9 +121,7 @@ export default class Histogram extends PureComponent<PropTypes> {
     // Update axis
     this.svg.select('.x.axis').call(this.statics.axis.xAxis)
 
-    const histogramData = d3.layout.histogram().bins(this.statics.scales.x.ticks(this.props.bins))(
-      this.props.data
-    )
+    const histogramData = d3.layout.histogram().bins(this.statics.scales.x.ticks(this.props.bins))(this.props.data)
 
     this.statics.scales.y.domain([
       0,

@@ -19,19 +19,7 @@ import WordCloud from './WordCloud'
 export { demodata, icons }
 
 // Export individual components.
-export {
-  BarChart,
-  Histogram,
-  HorizontalBarChart,
-  LineBarChartCombo,
-  Map,
-  Modal,
-  ProgressIndicator,
-  Spinner,
-  SvgIcon,
-  Table,
-  WordCloud,
-}
+export { BarChart, Histogram, HorizontalBarChart, LineBarChartCombo, Map, Modal, ProgressIndicator, Spinner, SvgIcon, Table, WordCloud }
 
 // Export a default object with all modules.
 export default {
