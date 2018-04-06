@@ -373,6 +373,7 @@ export default class LineBarChartCombo extends React.Component<PropTypes, StateT
       verticalLines
         .selectAll('text')
         .text(d => d.label)
+        .attr('dx', '5px')
         .attr('dy', '-5px')
         .attr('transform', d => 'translate(' + chart.xAxis.scale()(d.date) + ',' + yTranslate + ') rotate(-90)')
         .style('font-size', '90%')
