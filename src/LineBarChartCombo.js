@@ -22,6 +22,7 @@ type PropTypes = {
   positiveNegativeCounts?: Array<Object>,
   showBrush: boolean,
   subPerspective?: Object,
+  useInteractiveGuideline: boolean,
   width: string,
   yaxis?: number,
 }
@@ -32,6 +33,7 @@ type StateTypes = {
   currentChart: any,
   data: string,
   lineChartIsActive: boolean,
+  useInteractiveGuideline: false,
   yaxis?: number,
 }
 
@@ -51,6 +53,7 @@ export default class LineBarChartCombo extends React.Component<PropTypes, StateT
   positiveNegativeCounts?: Array<Object>,
   showBrush: boolean,
   subPerspective?: Object,
+  useInteractiveGuideline: boolean,
   width: string,
   yaxis?: number,
 }`
