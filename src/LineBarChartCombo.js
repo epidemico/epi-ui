@@ -24,6 +24,7 @@ type PropTypes = {
   subPerspective?: Object,
   useInteractiveGuideline: boolean,
   width: string,
+  verticalLineData?: Array<{ date: number, label: string }>,
   yaxis?: number,
 }
 
@@ -33,7 +34,6 @@ type StateTypes = {
   currentChart: any,
   data: string,
   lineChartIsActive: boolean,
-  useInteractiveGuideline: false,
   yaxis?: number,
 }
 
@@ -55,6 +55,7 @@ export default class LineBarChartCombo extends React.Component<PropTypes, StateT
   subPerspective?: Object,
   useInteractiveGuideline: boolean,
   width: string,
+  verticalLineData?:Array<{date: number, label: string}>,
   yaxis?: number,
 }`
 
@@ -69,6 +70,7 @@ export default class LineBarChartCombo extends React.Component<PropTypes, StateT
   toggledLegends = {}
   defaultChart: React.Node
   defaultSmoothChart: React.Node
+  svgPath: string
 
   constructor(props: PropTypes) {
     super()
@@ -109,10 +111,10 @@ export default class LineBarChartCombo extends React.Component<PropTypes, StateT
   }
   componentDidMount() {
     const chart = this.state.chart[this.state.activeChartName]
-    const svgPath = `#${this.name}-line-chart svg`
+    this.svgPath = `#${this.name}-line-chart svg`
     let maxInterval = 10
     const findChart = setInterval(() => {
-      const domExists = d3.select(svgPath)[0][0]
+      const domExists = d3.select(this.svgPath)[0][0]
       if (domExists || maxInterval-- < 0) clearInterval(findChart)
       if (domExists) {
         nvd3.addGraph(() => {
@@ -137,14 +139,15 @@ export default class LineBarChartCombo extends React.Component<PropTypes, StateT
           // chart.showVoronoi(true)
 
           d3
-            .select(svgPath)
+            .select(this.svgPath)
             .datum(JSON.parse(this.state.data))
             .transition()
             .duration(500)
             .call(chart)
 
-          return chart
+          return this.props.verticalLineData ? this.drawVerticalLines(chart, this.props.verticalLineData) : chart
         })
+
         if (this.props.initialChart) {
           this._changeChart({ currentTarget: { value: this.props.initialChart } })
         }
@@ -306,6 +309,7 @@ export default class LineBarChartCombo extends React.Component<PropTypes, StateT
       })(),
     })
   }
+
   _handleChangePerspective(target: string, e: SyntheticEvent<HTMLSelectElement>) {
     const perspective = e.currentTarget.value
     const { context } = this.props
@@ -316,6 +320,7 @@ export default class LineBarChartCombo extends React.Component<PropTypes, StateT
     })
     this.props.changePerspective && this.props.changePerspective(NewPerspective, context, target)
   }
+
   _getCurrentActivePerspective(target: string) {
     let activePerspective = ''
     _.each(this.props[target], (v, k) => {
@@ -323,6 +328,61 @@ export default class LineBarChartCombo extends React.Component<PropTypes, StateT
     })
     return activePerspective
   }
+
+  drawVerticalLines = (chart, verticalLineData: Array<{ date: number, label: string }>) => {
+    const path = `${this.svgPath} .nv-linesWrap`
+    if (!d3.select(path).select('.vertical-lines')[0][0]) {
+      d3
+        .select(path)
+        .append('g')
+        .attr('class', 'vertical-lines')
+    }
+
+    var verticalLines = d3
+      .select(path)
+      .select('.vertical-lines')
+      .selectAll('.vertical-line')
+      .data(verticalLineData)
+
+    var group = verticalLines
+      .enter()
+      .append('g')
+      .attr('class', 'vertical-line')
+
+    group.append('svg:line')
+    group.append('text')
+
+    verticalLines.exit().remove()
+
+    verticalLines
+      .selectAll('line')
+      .attr('x1', function(d) {
+        return chart.xAxis.scale()(d.date)
+      })
+      .attr('x2', function(d) {
+        return chart.xAxis.scale()(d.date)
+      })
+      .attr('y1', chart.yAxis.scale().range()[0])
+      .attr('y2', chart.yAxis.scale().range()[1])
+      .style('stroke', 'red')
+
+    verticalLines
+      .selectAll('text')
+      .text(d => d.label)
+      .attr('dy', '-8px')
+      .attr('transform', d => 'translate(' + chart.xAxis.scale()(d.date) + ',' + chart.yAxis.scale()(2) + ') rotate(-90)')
+      .style('font-size', '90%')
+
+    /*
+    nvd3.utils.windowResize(args => {
+      chart.update(...args)
+      this.drawVerticalLines(chart, verticalLineData)
+    })
+    */
+
+    return chart
+  }
+
   render() {
     const { height, width, lineBarComboActive } = this.props
     const perspectiveBtns = _.map(this.props.perspective, (value, perspective) => {
