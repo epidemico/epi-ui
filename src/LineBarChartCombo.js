@@ -124,29 +124,25 @@ export default class LineBarChartCombo extends React.Component<PropTypes, StateT
           // })
           chart.xAxis.rotateLabels(-30)
           // chart.x2Axis.rotateLabels(-30)
-          chart.xAxis.tickFormat(d => {
-            return d3.time.format('%d-%b-%y')(new Date(d))
-          })
-          chart.x2Axis.tickFormat(d => {
-            return d3.time.format('%d-%b-%y')(new Date(d))
-          })
+          chart.xAxis.tickFormat(d => d3.time.format('%d-%b-%y')(new Date(d)))
+          chart.x2Axis.tickFormat(d => d3.time.format('%d-%b-%y')(new Date(d)))
           chart.yAxis
-            .tickFormat(d => {
-              return parseFloat(d.toFixed(1))
-            })
-            .showMaxMin(false)
+            .tickFormat(d => parseFloat(d.toFixed(1)))
+            .showMaxMin(true)
             .axisLabel(this._getCurrentActivePerspective('perspective'))
             .axisLabelDistance(-10)
           chart.y2Axis.tickFormat(d3.format(''))
           chart.yDomain([0, this._getMaxValue(JSON.parse(this.state.data))]) // Always start the y-axis with zero
-          // chart.useInteractiveGuideline(true)
+          chart.useInteractiveGuideline(this.props.useInteractiveGuideline)
           // chart.showVoronoi(true)
+
           d3
             .select(svgPath)
             .datum(JSON.parse(this.state.data))
             .transition()
             .duration(500)
             .call(chart)
+
           return chart
         })
         if (this.props.initialChart) {
