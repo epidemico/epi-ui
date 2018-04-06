@@ -364,21 +364,20 @@ export default class LineBarChartCombo extends React.Component<PropTypes, StateT
       })
       .attr('y1', chart.yAxis.scale().range()[0])
       .attr('y2', chart.yAxis.scale().range()[1])
-      .style('stroke', 'red')
+      .style('stroke', d => d.color || 'red')
 
     verticalLines
       .selectAll('text')
       .text(d => d.label)
-      .attr('dy', '-8px')
+      .attr('dy', '-6px')
       .attr('transform', d => 'translate(' + chart.xAxis.scale()(d.date) + ',' + chart.yAxis.scale()(2) + ') rotate(-90)')
       .style('font-size', '90%')
+      .style('fill', d => d.textColor || '#555')
 
-    /*
     nvd3.utils.windowResize(args => {
       chart.update(...args)
       this.drawVerticalLines(chart, verticalLineData)
     })
-    */
 
     return chart
   }
