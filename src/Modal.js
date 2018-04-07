@@ -22,10 +22,10 @@ type PropTypes = {
   fullScreen: boolean,
   hasSteps: boolean,
   loader: boolean,
-  onCancel: Function,
+  onCancel?: Function,
   onNext: Function,
   onPrev: Function,
-  onSubmit: Function,
+  onSubmit?: Function,
   showFooter: boolean,
   showSubmit: boolean,
   submitTitle: string,
@@ -36,7 +36,10 @@ export default class Modal extends React.PureComponent<PropTypes> {
   // Must keep this synced with PropTypes above manually:
   static flowTypes = `{
   active: boolean,
-  body: BodyType,
+  body: {
+    title: string,
+    dom: React.Node,
+  }
   cancelTitle: string,
   centerContent: boolean,
   currentStep: number,
@@ -44,10 +47,10 @@ export default class Modal extends React.PureComponent<PropTypes> {
   fullScreen: boolean,
   hasSteps: boolean,
   loader: boolean,
-  onCancel: Function,
+  onCancel?: Function,
   onNext: Function,
   onPrev: Function,
-  onSubmit: Function,
+  onSubmit?: Function,
   showFooter: boolean,
   showSubmit: boolean,
   submitTitle: string,
@@ -106,7 +109,7 @@ export default class Modal extends React.PureComponent<PropTypes> {
               <div className={`modal-title ${centerContent ? 'is-centered' : ''}`}>{body.title}</div>
               <div onClick={onCancel} className="modal-cancel">
                 <SvgIcon icon="Close" hideLabel />
-                <span className="modal-cancel-label">Cancel</span>
+                <span className="modal-cancel-label">{cancelTitle}</span>
               </div>
             </div>
             <div className={`modal-body ${centerContent ? 'is-centered' : ''}`}>{body.dom}</div>
