@@ -20,15 +20,10 @@ class ModalWrapper extends React.Component<{}, { active: boolean }> {
   render() {
     return (
       <div>
-        <button type="button" onClick={this.toggle}>
+        <button type="button" className="btn btn-secondary" onClick={this.toggle}>
           Toggle Modal
         </button>
-        <EpiUI.Modal
-          {...demodata.Modal}
-          active={this.state.active}
-          onSubmit={this.toggle}
-          onCancel={this.toggle}
-        />
+        <EpiUI.Modal {...demodata.Modal} active={this.state.active} onSubmit={this.toggle} onCancel={this.toggle} />
       </div>
     )
   }
@@ -62,13 +57,33 @@ const EpiUIBrowser = () => (
         const component = EpiUI[key]
         const props = demodata[key]
         const element = React.createElement(component, props)
-        const defaultProps = JSON.stringify(
-          component.getDefaultProps ? component.getDefaultProps() : component.defaultProps,
-          null,
-          '  '
-        )
+        const defaultProps = JSON.stringify(component.getDefaultProps ? component.getDefaultProps() : component.defaultProps, null, '  ')
         const flowTypes = component.flowTypes
-        const sampleProps = JSON.stringify(props, null, '  ')
+        const sampleProps =
+          key === 'Modal'
+            ? `{
+  body: {
+    title: (
+      <div>
+        Epi-UI <strong>Modal</strong>
+      </div>
+    ),
+    dom: (
+      <div>
+        <code>&lt;Modal&gt;</code> supports <strong>HTML / JSX</strong>!
+      </div>
+    ),
+  },
+  active: false,
+  showFooter: true,
+  centerContent: false,
+  onCancel: () => log('Modal cancelled!'),
+  onSubmit: () => log('Modal submitted!'),
+  onNext: (currentStep: number) => log(currentStep),
+  onPrev: (currentStep: number) => log(currentStep),
+  submitTitle: 'OK',
+}`
+            : JSON.stringify(props, null, '  ')
 
         return (
           <div key={key}>
@@ -122,12 +137,10 @@ const EpiUIBrowser = () => (
               [<br />
               icon: Arrow<br />
               size: {0.8} (default is {1}, value interpreted in REM units)<br />
-              label: 'More' (default is name of icon, appears as alt text and in
-              &lt;label&gt;&lt;/label&gt; tags after icon)<br />
+              label: 'More' (default is name of icon, appears as alt text and in &lt;label&gt;&lt;/label&gt; tags after icon)<br />
               prependLabel: false (set to true if you want the label to appear BEFORE the icon)<br />
               hideLabel: false (set to true if you don't want the label to appear)<br />
-              stacked: false (set to true if you want to stack the icon and label on top of
-              eachother)<br />
+              stacked: false (set to true if you want to stack the icon and label on top of eachother)<br />
               color: '#ffffff' (default is black)<br />
               rotate: {-90} (default is no rotation, values are {-90}, {90}, {180})<br />
               ]
