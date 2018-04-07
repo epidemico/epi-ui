@@ -10,6 +10,8 @@ type Word = {
 
 type PropTypes = {
   data: Array<Word>,
+  height?: number,
+  width?: number,
 }
 
 export default class WordCloud extends PureComponent<PropTypes> {
@@ -23,6 +25,8 @@ export default class WordCloud extends PureComponent<PropTypes> {
 
   static defaultProps = {
     data: [],
+    width: 640,
+    height: 480,
   }
 
   fontSize: Function
@@ -30,8 +34,8 @@ export default class WordCloud extends PureComponent<PropTypes> {
 
   componentDidMount() {
     var fill = d3.scale.category20b()
-    var w = 450,
-      h = 450
+    var w = this.props.width,
+      h = this.props.height
     var max
     this.fontSize = d3.scale['sqrt']().range([10, 100])
     this.layout = cloud()
