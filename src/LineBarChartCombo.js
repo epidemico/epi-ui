@@ -13,8 +13,9 @@ type PropTypes = {
   context?: Object,
   data: Array<Object>,
   height: string,
-  initialChart: string,
+  initialChart: 'Line Chart' | 'Smooth Line Chart' | 'Bar Chart' | 'Line Bar Combo',
   lineBarComboActive?: boolean,
+  maxYMultiplier?: number,
   name?: string,
   onBrush?: Function,
   perspective?: Object,
@@ -23,9 +24,9 @@ type PropTypes = {
   showBrush: boolean,
   subPerspective?: Object,
   useInteractiveGuideline: boolean,
-  width: string,
   verticalLineData?: Array<{ date: number, label: string }>,
   verticalTextDirection: 'rtl' | 'ltr',
+  width: string,
   yaxis?: number,
 }
 
@@ -45,8 +46,9 @@ export default class LineBarChartCombo extends React.Component<PropTypes, StateT
   context?: Object,
   data: Array<Object>,
   height: string,
-  initialChart: string,
+  initialChart: 'Line Chart' | 'Smooth Line Chart' | 'Bar Chart' | 'Line Bar Combo',
   lineBarComboActive?: boolean,
+  maxYMultiplier?: number,
   name?: string,
   onBrush?: Function,
   perspective?: Object,
@@ -55,18 +57,19 @@ export default class LineBarChartCombo extends React.Component<PropTypes, StateT
   showBrush: boolean,
   subPerspective?: Object,
   useInteractiveGuideline: boolean,
-  width: string,
   verticalLineData?:Array<{date: number, label: string}>,
   verticalTextDirection: 'rtl' | 'ltr',
+  width: string,
   yaxis?: number,
 }`
 
   static defaultProps = {
-    initialChart: 'Line Chart',
     height: '500px',
-    width: '100%',
+    initialChart: 'Line Chart',
+    maxYMultiplier: 1,
     showBrush: true,
     verticalTextDirection: 'rtl',
+    width: '100%',
   }
 
   name: string
@@ -113,7 +116,10 @@ export default class LineBarChartCombo extends React.Component<PropTypes, StateT
     }
   }
   componentDidMount() {
-    const chart = this.state.chart[this.state.activeChartName]
+    const { initialChart, maxYMultiplier, useInteractiveGuideline, verticalLineData } = this.props
+    const { activeChartName, data } = this.state
+    const chart = this.state.chart[activeChartName]
+    const parsedData = JSON.parse(data)
     this.svgPath = `#${this.name}-line-chart svg`
     let maxInterval = 10
     const findChart = setInterval(() => {
@@ -137,22 +143,22 @@ export default class LineBarChartCombo extends React.Component<PropTypes, StateT
             .axisLabel(this._getCurrentActivePerspective('perspective'))
             .axisLabelDistance(-10)
           chart.y2Axis.tickFormat(d3.format(''))
-          chart.yDomain([0, this._getMaxValue(JSON.parse(this.state.data))]) // Always start the y-axis with zero
-          chart.useInteractiveGuideline(this.props.useInteractiveGuideline)
+          chart.yDomain([0, this._getMaxValue(parsedData) * maxYMultiplier]) // Always start the y-axis with zero
+          chart.useInteractiveGuideline(useInteractiveGuideline)
           // chart.showVoronoi(true)
 
           d3
             .select(this.svgPath)
-            .datum(JSON.parse(this.state.data))
+            .datum(parsedData)
             .transition()
             .duration(500)
             .call(chart)
 
-          return this.props.verticalLineData ? this.drawVerticalLines(chart, this.props.verticalLineData) : chart
+          return verticalLineData ? this.drawVerticalLines(chart, verticalLineData) : chart
         })
 
-        if (this.props.initialChart) {
-          this._changeChart({ currentTarget: { value: this.props.initialChart } })
+        if (initialChart) {
+          this._changeChart({ currentTarget: { value: initialChart } })
         }
       }
     }, 250)
