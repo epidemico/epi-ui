@@ -21,7 +21,7 @@
     "test:coverage": "nwb test-react --coverage",
     "test:watch": "nwb test-react --server",
     "new-version": "npm version minor && npm run build",
-    "deploy": "npm run new-version && npm publish --access=public && (cd demo/dist/ && surge --domain epi-ui.surge.sh --project ./)",
+    "deploy": "npm run new-version && git push && git push --tags && npm publish --access=public && (cd demo/dist/ && surge --domain epi-ui.surge.sh --project ./)",
     "clean": "nwb clean-module && nwb clean-demo"
   },
   "dependencies": {
