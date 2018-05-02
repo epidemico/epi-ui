@@ -76,6 +76,7 @@ export default class LineBarChartCombo extends React.Component<PropTypes, StateT
   toggledLegends = {}
   defaultChart: React.Node
   defaultSmoothChart: React.Node
+  brushCallbackReady = false
   svgPath: string
 
   constructor(props: PropTypes) {
@@ -86,14 +87,21 @@ export default class LineBarChartCombo extends React.Component<PropTypes, StateT
         .toString(16)
         .substr(2)}`
 
-    this.defaultChart = nvd3.models[props.showBrush ? 'lineWithFocusChart' : 'lineChart'](extent => {
-      props.onBrush && props.onBrush(extent)
-    }).color(colors)
-    this.defaultSmoothChart = nvd3.models[props.showBrush ? 'lineWithFocusChart' : 'lineChart'](extent => {
-      props.onBrush && props.onBrush(extent)
-    })
+    const lineChartName = props.showBrush ? 'lineWithFocusChart' : 'lineChart'
+    this.defaultChart = nvd3.models[lineChartName]().color(colors)
+    this.defaultSmoothChart = nvd3.models[lineChartName]()
       .color(colors)
       .interpolate('basis')
+
+    if (props.onBrush) {
+      const onBrush = arg => {
+        if (this.brushCallbackReady) props.onBrush(arg)
+        this.brushCallbackReady = true
+      }
+      this.defaultChart.focus.dispatch.on('brush', onBrush)
+      this.defaultSmoothChart.focus.dispatch.on('brush', onBrush)
+    }
+
     this.state = {
       data: JSON.stringify(props.data),
       lineChartIsActive: true,
