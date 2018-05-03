@@ -6,7 +6,9 @@
   @include box-shadow($box-shadow);
 }
 .ol-overlay-container, .ol-popup, #popup-content {
+  background: #ffffffc7;
   border-radius: .3rem;
+  padding: .5rem .4rem;
 }
 
 .ol-zoom {
