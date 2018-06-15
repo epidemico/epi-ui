@@ -8,23 +8,19 @@ $gray-dark:                   #898989;
 $gray-darker:                 #666;
 $gray-darkest:                #333;
 
-$primary-color-lightest:      #6394cc;
-$primary-color-lighter:       #3e79bb;
-$primary-color:               #1E63B0; // BAH Blue
-$primary-color-darker:        #0b4b93;
-$primary-color-darkest:       #073a73;
+$primary-color-brighter:      #0ea6b5;
+$primary-color-lightest:      #aadfef;
+$primary-color-lighter:       #0ea6b5;
+$primary-color:               #0a5157; // Central color
+$primary-color-darker:        #5e8097;
+$primary-color-darkest:       #253746;
+$dark-blue:                   #253746;
 
-$primary-color-brighter:      #277cda;
+$secondary-color:             #0ea6b5;
+$secondary-color-lighter:     #aadfef;
 
-
-$dark-blue:                   #203746;
-
-$secondary-color-lighter:     #5acdaa;
-//$secondary-color:             #12b281;
-$secondary-color:             #2fbd92;
-
-$tertiary-color:              #8a4fab;
-$tertiary-color2:             #fd3868;
+$tertiary-color:              #95358f;
+$tertiary-color2:             #d61a5e;
 
 $toolbar-bg:                  $primary-color-darker;
 $toolbar-text:                lighten(desaturate($primary-color-lightest, 15%), 15%);
@@ -35,12 +31,12 @@ $sidebar-admin-color:         $primary-color-darker;
 $sidebar-item-active-color:   $primary-color-darkest;
 $sidebar-text-color:          lighten(desaturate($primary-color-lightest, 15%), 15%);
 
-$lens-disease:               #7ac1ac;
-$lens-food-safety:           #46b2c9;
-$lens-drug-safety:           #7199c6;
-$lens-brand-senitment:       #2e6cb0;
-$lens-patient-journey-experience:       #a681c1;
-$lens-patient-diagnosis:     #a6629a;
+$lens-disease:               #73aa4f;
+$lens-food-safety:           #5e8097;
+$lens-drug-safety:           #0ea6b5;
+$lens-brand-senitment:       #87af9a;
+$lens-patient-journey-experience: #a681c1;
+$lens-patient-diagnosis:     #95358f;
 $lens-custom:                $gray-dark;
 
 $category-Biovigilance:      $lens-food-safety;
