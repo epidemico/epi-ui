@@ -235,12 +235,10 @@ export default class LineBarChartCombo extends React.Component<PropTypes, StateT
         if (obj.point.y === -1) {
           return ' '
         }
-        return `
-          <span className='tooltiptext'>
-            <p>${moment(obj.point.x).format('lll')} </p>
-            <p>${obj.point.y} </p>
-          </span>
-        `
+        return `<span className='tooltiptext'>
+            <p>${moment(obj.point.x).format('lll')}, ${obj.series[obj.seriesIndex].key}</p>
+            <p>${obj.point.y}</p>
+          </span>`
       })
       chart.xAxis.tickFormat(d => {
         return d3.time.format('%d-%b-%y')(new Date(d))
@@ -263,12 +261,10 @@ export default class LineBarChartCombo extends React.Component<PropTypes, StateT
         if (obj.point.y === -1) {
           return ' '
         }
-        return `
-          <span className='tooltiptext'>
-            <p>${moment(obj.point.x).format('lll')} </p>
-            <p>${obj.point.y} </p>
-          </span>
-        `
+        return `<span className='tooltiptext'>
+            <p>${moment(obj.point.x).format('lll')}, ${obj.series[obj.seriesIndex].key}</p>
+            <p>${obj.point.y}</p>
+          </span>`
       })
       chart.xAxis.tickFormat(d => {
         return d3.time.format('%d-%b-%y')(new Date(d))
