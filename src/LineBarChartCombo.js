@@ -20,7 +20,6 @@ type PropTypes = {
     | "Line Bar Combo",
   lineBarComboActive?: boolean,
   maxYMultiplier?: number,
-  minValue?: number,
   name?: string,
   onBrush?: Function,
   perspective?: Object,
@@ -32,7 +31,7 @@ type PropTypes = {
   verticalLineData?: Array<{ date: number, label: string }>,
   verticalTextDirection: "rtl" | "ltr",
   width: string,
-  yaxis?: number
+  yaxis?: [number, number]
 };
 
 type StateTypes = {
@@ -41,7 +40,7 @@ type StateTypes = {
   currentChart: any,
   data: string,
   lineChartIsActive: boolean,
-  yaxis?: number
+  yaxis?: [number, number]
 };
 
 export default class LineBarChartCombo extends React.Component<
@@ -57,7 +56,6 @@ export default class LineBarChartCombo extends React.Component<
   initialChart: 'Line Chart' | 'Smooth Line Chart' | 'Bar Chart' | 'Line Bar Combo',
   lineBarComboActive?: boolean,
   maxYMultiplier?: number,
-  minValue?: number,
   name?: string,
   onBrush?: Function,
   perspective?: Object,
@@ -69,14 +67,13 @@ export default class LineBarChartCombo extends React.Component<
   verticalLineData?:Array<{date: number, label: string}>,
   verticalTextDirection: 'rtl' | 'ltr',
   width: string,
-  yaxis?: number,
+  yaxis?: [number, number]
 }`;
 
   static defaultProps = {
     height: "500px",
     initialChart: "Line Chart",
     maxYMultiplier: 1,
-    minValue: 0,
     showBrush: true,
     verticalTextDirection: "rtl",
     width: "100%"
@@ -166,7 +163,7 @@ export default class LineBarChartCombo extends React.Component<
             .axisLabel(this._getCurrentActivePerspective("perspective"))
             .axisLabelDistance(-10);
           chart.y2Axis.tickFormat(d3.format(""));
-          chart.yDomain([this.props.minValue, this._getMaxValue(parsedData) * maxYMultiplier]);
+          chart.yDomain([this.props.yaxis && this.props.yaxis[0] || 0, this.props.yaxis && this.props.yaxis[1] || (this._getMaxValue(parsedData) * maxYMultiplier)]);
           chart.useInteractiveGuideline(useInteractiveGuideline);
           // chart.showVoronoi(true)
 
@@ -218,7 +215,7 @@ export default class LineBarChartCombo extends React.Component<
       this.state.currentChart.yDomain([
         0,
         this._getMaxValue(JSON.parse(this.state.data))
-      ]); // Always start the y-axis with zoro
+      ]); // Always start the y-axis with zero
     } else if (
       this.state.currentChart.yDomain &&
       this.state.activeChartName !== "Line Bar Combo"
