@@ -187,7 +187,6 @@ export default class LineBarChartCombo extends React.Component<
   componentWillReceiveProps(nextProps: PropTypes) {
     this.setState({
       data: JSON.stringify(nextProps.data),
-      yaxis: nextProps.yaxis
     });
   }
   shouldComponentUpdate(nextProps: PropTypes, nextState: StateTypes) {
@@ -205,23 +204,18 @@ export default class LineBarChartCombo extends React.Component<
       .showMaxMin(false)
       .axisLabel(this._getCurrentActivePerspective("perspective"))
       .axisLabelDistance(-10);
-    if (this.state.currentChart.yAxis2)
-      this.state.currentChart.yAxis2.axisLabel("% of records");
+
+    if (this.state.currentChart.yAxis2) this.state.currentChart.yAxis2.axisLabel("% of records");
+
     if (
-      !this.state.yaxis &&
       this.state.currentChart.yDomain &&
       this.state.activeChartName !== "Line Bar Combo"
     ) {
-      this.state.currentChart.yDomain([
-        0,
-        this._getMaxValue(JSON.parse(this.state.data))
-      ]); // Always start the y-axis with zero
-    } else if (
-      this.state.currentChart.yDomain &&
-      this.state.activeChartName !== "Line Bar Combo"
-    ) {
-      this.state.currentChart.yDomain([-1, 1]); // Sentiment values are always between -1 and 1
+      this.state.currentChart.yDomain(
+        [this.props.yaxis && this.props.yaxis[0] || 0, this.props.yaxis && this.props.yaxis[1] || (this._getMaxValue(JSON.parse(this.state.data)) * this.props.maxYMultiplier)]
+      );
     }
+
     d3.select(
       `#${this.name}-${this.state.activeChartName
         .toLowerCase()
@@ -240,12 +234,11 @@ export default class LineBarChartCombo extends React.Component<
           : !this.toggledLegends[d.key];
       if (this.toggledLegends[d.key] !== disabledValue)
         this.toggledLegends[d.key] = disabledValue;
-      if (this.state.currentChart.yDomain) {
-        this.state.currentChart.yDomain([
-          0,
-          this._getMaxValue(JSON.parse(this.state.data))
-        ]);
-      }
+        if (this.state.currentChart.yDomain) {
+            this.state.currentChart.yDomain(
+                [this.props.yaxis && this.props.yaxis[0] || 0, this.props.yaxis && this.props.yaxis[1] || (this._getMaxValue(JSON.parse(this.state.data)) * this.props.maxYMultiplier)]
+            );
+        }
     };
   }
   _getMaxValue(data: Array<Object>) {
