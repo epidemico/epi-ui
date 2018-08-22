@@ -20,6 +20,7 @@ type PropTypes = {
     | "Line Bar Combo",
   lineBarComboActive?: boolean,
   maxYMultiplier?: number,
+  minValue?: number,
   name?: string,
   onBrush?: Function,
   perspective?: Object,
@@ -56,6 +57,7 @@ export default class LineBarChartCombo extends React.Component<
   initialChart: 'Line Chart' | 'Smooth Line Chart' | 'Bar Chart' | 'Line Bar Combo',
   lineBarComboActive?: boolean,
   maxYMultiplier?: number,
+  minValue?: number,
   name?: string,
   onBrush?: Function,
   perspective?: Object,
@@ -74,6 +76,7 @@ export default class LineBarChartCombo extends React.Component<
     height: "500px",
     initialChart: "Line Chart",
     maxYMultiplier: 1,
+    minValue: 0,
     showBrush: true,
     verticalTextDirection: "rtl",
     width: "100%"
@@ -163,7 +166,7 @@ export default class LineBarChartCombo extends React.Component<
             .axisLabel(this._getCurrentActivePerspective("perspective"))
             .axisLabelDistance(-10);
           chart.y2Axis.tickFormat(d3.format(""));
-          chart.yDomain([0, this._getMaxValue(parsedData) * maxYMultiplier]); // Always start the y-axis with zero
+          chart.yDomain([this.props.minValue, this._getMaxValue(parsedData) * maxYMultiplier]);
           chart.useInteractiveGuideline(useInteractiveGuideline);
           // chart.showVoronoi(true)
 
